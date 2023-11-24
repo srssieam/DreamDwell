@@ -1,0 +1,15 @@
+li a{
+    color:white;
+    text-decoration: none;
+}
+li a:hover{
+    color:yellow;
+    text-decoration: underline;
+}
+li a.active{
+    color:yellow;
+    text-decoration: underline;
+}
+li a.active a{
+    color:yellow;
+}
