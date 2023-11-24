@@ -1,5 +1,6 @@
 import Banner from "../Components/Banner/Banner";
 import Enquiry from "../Components/Enquiry/Enquiry";
+import Footer from "../Components/Footer/Footer";
 import HowItWork from "../Components/HowItWork/HowItWork";
 import Navbar from "../Components/Navbar/Navbar";
 import PopularEstate from "../Components/PopularEstate/PopularEstate";
@@ -15,6 +16,7 @@ const Home = () => {
             <HowItWork></HowItWork>
             <Review></Review>
             <Enquiry></Enquiry>
+            <Footer></Footer>
         </div>
     );
 };
