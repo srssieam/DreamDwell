@@ -7,8 +7,8 @@ import office from '../../assets/office.png'
 
 const Banner = () => {
     return (
-        <div className=''>
-            <video className='w-full absolute object-cover h-[100vh] -z-10' autoPlay loop muted>
+        <div className='relative h-[100vh]'>
+            <video className='w-full h-full absolute top-0 object-cover  -z-10' autoPlay loop muted>
                 <source src={bgVideo} type='video/mp4' />
             </video>
             <div className='bg-[#0000006e] w-full h-[100vh] absolute z-10 flex items-center'>
@@ -50,7 +50,7 @@ const Banner = () => {
 
                     <div className='mt-4'>
                         <div className="join">
-                            <button className="btn btn-outline text-yellow-500 hover:bg-black hover:text-yellow-500 text-xl join-item">Bye</button>
+                            <button className="btn btn-outline text-yellow-500 hover:bg-black hover:text-yellow-500 text-xl join-item">Buy</button>
                             <button className="btn btn-outline text-yellow-500 hover:bg-black hover:text-yellow-500 text-xl join-item">Rent</button>
                             <button className="btn btn-outline text-yellow-500 hover:bg-black hover:text-yellow-500 text-xl join-item">Sell</button>
                         </div>
