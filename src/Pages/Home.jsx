@@ -2,6 +2,7 @@ import Banner from "../Components/Banner/Banner";
 import HowItWork from "../Components/HowItWork/HowItWork";
 import Navbar from "../Components/Navbar/Navbar";
 import PopularEstate from "../Components/PopularEstate/PopularEstate";
+import Review from "../Components/Review/Review";
 
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
             <Banner></Banner>
             <PopularEstate></PopularEstate>
             <HowItWork></HowItWork>
+            <Review></Review>
         </div>
     );
 };

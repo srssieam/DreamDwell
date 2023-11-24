@@ -5,7 +5,7 @@ import key from '../../assets/key.png'
 
 const HowItWork = () => {
     return (
-        <div className="max-w-screen-xl mx-auto my-16">
+        <div className="max-w-screen-xl mx-auto my-24">
             <h1 className="text-5xl font-semibold mb-10">How it works ?<br />
                 Find a perfect home
             </h1>

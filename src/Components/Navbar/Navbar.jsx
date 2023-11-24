@@ -44,7 +44,7 @@ const Navbar = () => {
                     </div>
 
                     <div className="navbar-end">
-                        <li className=' list-none'><NavLink to='/login' className='flex items-center gap-2 mr-4 text-[#54dd42]'><FiUser></FiUser>Login</NavLink></li>
+                        <li className=' list-none'><NavLink to='/login' className='flex items-center gap-2 lg:text-lg mr-4 text-[#54dd42]'><FiUser></FiUser>Login</NavLink></li>
                     </div>
                 </div>
             </div>

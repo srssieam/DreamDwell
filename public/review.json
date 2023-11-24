@@ -1,0 +1,62 @@
+[
+    {
+        "reviewer_name": "Jhon Doe",
+        "image": "https://i.ibb.co/Kx9cywn/12.jpg",
+        "review_description": "Absolutely thrilled with the professionalism and dedication of the team. Found my dream home in no time!",
+        "property_title": "Serenity Haven Villa"
+    },
+    {
+        "reviewer_name": "David Martinez",
+        "image": "https://i.ibb.co/2NY7Zx1/3.jpg",
+        "review_description": "Exceptional service! Their expertise made the buying process smooth and stress-free.",
+        "property_title": "Tranquil Meadows Residence"
+    },
+    {
+        "reviewer_name": "Sophie Williams",
+        "image": "https://i.ibb.co/n3LdNfS/1.jpg",
+        "review_description": "Fantastic experience! The guidance provided by their realtors helped me find the perfect property.",
+        "property_title": "Sunrise Oasis Apartments"
+    },
+    {
+        "reviewer_name": "Michael Brown",
+        "image": "https://i.ibb.co/XVkD3xL/4.jpg",
+        "review_description": "Highly recommend! Their attention to detail and commitment made my home search efficient and enjoyable.",
+        "property_title": "Urban Retreat Condos"
+    },
+    {
+        "reviewer_name": "Olivia Adams",
+        "image": "https://i.ibb.co/Y3v7Vf1/7.jpg",
+        "review_description": "Extremely satisfied! They went above and beyond to ensure I found a home that suited all my needs.",
+        "property_title": "Modern Vista Residences"
+    },
+    {
+        "reviewer_name": "Noah Garcia",
+        "image": "https://i.ibb.co/sK22dCp/2.jpg",
+        "review_description": "Amazing service! Their expertise and dedication made the entire process stress-free and enjoyable.",
+        "property_title": "Harborview Estates"
+    },
+    {
+        "reviewer_name": "Ava Lee",
+        "image": "https://i.ibb.co/8bxd6SV/6.jpg",
+        "review_description": "Exceptional guidance! Their team made the complex task of buying a home simple and convenient.",
+        "property_title": "Elegant Heights Tower"
+    },
+    {
+        "reviewer_name": "William Clark",
+        "image": "https://i.ibb.co/jMKX0cS/9.jpg",
+        "review_description": "Absolutely impressed! Their professionalism and knowledge made my home search a breeze.",
+        "property_title": "Luxe Living Apartments"
+    },
+    {
+        "reviewer_name": "Mia Robinson",
+        "image": "https://i.ibb.co/4fDTMsT/11.jpg",
+        "review_description": "Incredibly helpful team! Their support throughout the entire process was invaluable.",
+        "property_title": "Tranquility Gardens"
+    },
+    {
+        "reviewer_name": "Ethan Cooper",
+        "image": "https://i.ibb.co/BNRY6k6/10.jpg",
+        "review_description": "Outstanding service! Their expertise and attention to detail made my home buying experience wonderful.",
+        "property_title": "Harmony Haven Homes"
+    }
+]
