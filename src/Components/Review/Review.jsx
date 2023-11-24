@@ -23,10 +23,10 @@ const Review = () => {
     }, [])
     return (
         <div className="max-w-screen-xl mx-auto my-16 px-6 lg:px-0">
-            <h1 className="text-5xl font-semibold mb-10">See what others<br />
+            <h1 className="text-3xl lg:text-5xl font-semibold mb-10">See what others<br />
                 said about us
             </h1>
-            <div className='my-24'>
+            <div className='my-14'>
                 <Swiper
                     slidesPerView={2}
                     grid={{
