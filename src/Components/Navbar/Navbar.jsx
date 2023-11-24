@@ -14,7 +14,7 @@ const Navbar = () => {
         <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
     </>
     return (
-        <div className=' bg-black'>
+        <div className='fixed z-20 bg-black w-full'>
             <div className='max-w-screen-xl mx-auto'>
                 <div className="navbar">
                     <div className="navbar-start">
@@ -44,7 +44,7 @@ const Navbar = () => {
                     </div>
 
                     <div className="navbar-end">
-                        <li className=' list-none'><NavLink to='/login' className='flex items-center gap-2 mr-4'><FiUser className="text-[#ffee00]"></FiUser>Login</NavLink></li>
+                        <li className=' list-none'><NavLink to='/login' className='flex items-center gap-2 mr-4 text-[#54dd42]'><FiUser></FiUser>Login</NavLink></li>
                     </div>
                 </div>
             </div>
