@@ -13,14 +13,23 @@ import { Autoplay, Grid, Pagination } from 'swiper/modules';
 
 
 import { useEffect, useState } from 'react';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const Review = () => {
-    const [reviews, setReviews] = useState([])
+    const [reviews, setReviews] = useState([]);
+    const axiosPublic = useAxiosPublic();
+
     useEffect(() => {
-        fetch('review.json')
-            .then(res => res.json())
-            .then(data => setReviews(data))
-    }, [])
+        axiosPublic.get('/reviews')
+            .then(res=> {
+                console.log(res.data)
+                setReviews(res.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }, [axiosPublic])
+    
     return (
         <div className="max-w-screen-xl mx-auto my-16 px-6 lg:px-0">
             <h1 className="text-3xl lg:text-5xl font-semibold mb-10">See what others<br />
