@@ -2,9 +2,12 @@ import { Link } from "react-router-dom";
 import { FcGoogle } from 'react-icons/fc';
 import { loadCaptchaEnginge, LoadCanvasTemplate,  validateCaptcha } from 'react-simple-captcha';
 import { useEffect, useState } from "react";
+import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Login = () => {
     const [error, setError]=useState('')
+    const { userLogin } = useAuth();
 
     useEffect(() => {
         // Snippet --> loadCaptchaEnginge(Number_Of_Captcha_Charcters, Background_Color, Font_Color, Special_Characters);
@@ -16,14 +19,25 @@ const Login = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password)
         const captcha = form.captcha.value;
         console.log(email, password, captcha)
 
         if (validateCaptcha(captcha) == true) {
-            alert('Captcha Matched');
+            userLogin(email, password)
+                .then(res => {
+                    const loggedUser = res.user;
+                    console.log(loggedUser);
+                    Swal.fire({
+                        title: "Login Successful!",
+                        text: "Welcome back",
+                        icon: "success"
+                      });
+                      form.reset()
+                })
+                .catch(error => {
+                    console.log(error.message)
+                })
         }
-
         else {
             setError('Invalid captcha');
         }
