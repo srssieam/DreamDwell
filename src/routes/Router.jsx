@@ -6,6 +6,7 @@ import Register from "../Pages/Register";
 import Dashboard from "../Layout/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../Pages/ErrorPage";
+import ManageUser from "../AdminDashboard/ManageUser";
 
 
 const Router = createBrowserRouter([
@@ -32,6 +33,12 @@ const Router = createBrowserRouter([
         path:'dashboard',
         element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         errorElement:<ErrorPage></ErrorPage>,
+        children:[
+            {
+                path:'/dashboard/manageUsers',
+                element:<ManageUser></ManageUser>
+            }
+        ]
     }
 ])
 
