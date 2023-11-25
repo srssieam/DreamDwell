@@ -24,10 +24,20 @@ const Navbar = () => {
             })
     }
 
+    const handleDashboard = () =>{
+        if(!user){
+            Swal.fire({
+                title: "Access Denied",
+                text: "Please login to access this page.",
+                icon: "warning"
+              });
+        }
+    }
+
     const navLinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/allProperty'>Property</NavLink></li>
-        <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
+        <li onClick={handleDashboard}><NavLink to='/dashboard'>Dashboard</NavLink></li>
         <li onClick={handleLogout} className='text-[#54dd42] ml-4 md:hidden'>Logout |-</li>
     </>
     return (
