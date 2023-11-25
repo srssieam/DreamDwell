@@ -5,7 +5,7 @@ import useAuth from "../hooks/useAuth";
 
 
 const Register = () => {
-    const { createUser } = useAuth()
+    const { createUser, updateUserProfile } = useAuth()
     const { register, handleSubmit, formState: { errors } } = useForm()
 
     const onSubmit = data => {
@@ -14,6 +14,7 @@ const Register = () => {
             .then(res => {
                 const loggedUser = res.user;
                 console.log(loggedUser);
+                updateUserProfile(data.name, data.photoURL)
             })
             .catch(error => {
                 console.log(error.message)
