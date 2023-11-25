@@ -8,6 +8,8 @@ import { CgProfile } from "react-icons/cg";
 import { BsFillHouseAddFill } from "react-icons/bs";
 
 const Dashboard = () => {
+    const isAdmin = true;
+    const isAgent = false;
     return (
         <div className='max-w-screen-xl mx-auto'>
             <div style={{ backgroundImage: `url(${dashboardBg})`, backgroundAttachment: 'fixed' }} className="text-white bg-no-repeat bg-cover py-5 md:py-10 lg::py-20">
@@ -25,42 +27,39 @@ const Dashboard = () => {
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 min-h-full bg-black text-lg space-y-3 ">
-                        {/* Sidebar for Admin */}
-                        <>
-                            <li><NavLink to="/dashboard/adminHome"><IoMdHome className="text-2xl"></IoMdHome> Admin Home</NavLink></li>
-                            <li><NavLink to="/dashboard/manageProperties"><FaRectangleList className="text-2xl"></FaRectangleList> Manage Properties</NavLink></li>
-                            <li><NavLink to="/dashboard/manageUsers"><FaUsers className="text-2xl"></FaUsers> Manage Properties</NavLink></li>
-                            <li><NavLink to="/dashboard/manageReviews"><TbStarsFilled className="text-2xl"></TbStarsFilled> Manage Reviews</NavLink></li>
-                        </>
-
-                        {/* Sidebar for Agent */}
-                        <>
-                            <li><NavLink to="/dashboard/agentProfile"><CgProfile className="text-2xl"></CgProfile> Agent Profile</NavLink></li>
-                            <li><NavLink to="/dashboard/mySoldProperties"><FaHouseCircleCheck className="text-2xl"></FaHouseCircleCheck> My Sold Properties</NavLink></li>
-                            <li><NavLink to="/dashboard/myAddedProperties"><BsFillHouseAddFill className="text-2xl"></BsFillHouseAddFill> My Added Properties</NavLink></li>
-                            <li><NavLink to="/dashboard/myRequestedProperties"><FaHouseCircleExclamation className="text-2xl"></FaHouseCircleExclamation> My Requested Properties</NavLink></li>
-                        </>
-
-                        {/* Sidebar for Agent */}
-                        <>
-                            <li><NavLink to="/dashboard/userProfile"><CgProfile className="text-2xl"></CgProfile> My Profile</NavLink></li>
-                            <li><NavLink to="/dashboard/wishlist"><MdOutlineFavorite className="text-2xl"></MdOutlineFavorite> Wishlist</NavLink></li>
-                            <li><NavLink to="/dashboard/propertyBought"><FaHouseCircleCheck className="text-2xl"></FaHouseCircleCheck> Property Bought</NavLink></li>
-                            <li><NavLink to="/dashboard/myReviews"><TbStarsFilled className="text-2xl"></TbStarsFilled> My Reviews</NavLink></li>
-                        </>
-
-                        <hr className='border-green-400' />
-
-                        {/* common sidebar */}
-                        <>
-                            <li><NavLink to="/"><MdOutlineArrowBack className="text-2xl"></MdOutlineArrowBack> Back to Home</NavLink></li>
-                        </>
-                        
-
-                    </ul>
-                </div>
+                        {
+                            isAdmin ?
+                               
+                                <>
+                                    <li><NavLink to="/dashboard/adminHome"><IoMdHome className="text-2xl"></IoMdHome> Admin Home</NavLink></li>
+                                    <li><NavLink to="/dashboard/manageProperties"><FaRectangleList className="text-2xl"></FaRectangleList> Manage Properties</NavLink></li>
+                                    <li><NavLink to="/dashboard/manageUsers"><FaUsers className="text-2xl"></FaUsers> Manage Users</NavLink></li>
+                                    <li><NavLink to="/dashboard/manageReviews"><TbStarsFilled className="text-2xl"></TbStarsFilled> Manage Reviews</NavLink></li>
+                                </>
+                                : isAgent ?   
+                                <>
+                                    <li><NavLink to="/dashboard/agentProfile"><CgProfile className="text-2xl"></CgProfile> Agent Profile</NavLink></li>
+                                    <li><NavLink to="/dashboard/mySoldProperties"><FaHouseCircleCheck className="text-2xl"></FaHouseCircleCheck> My Sold Properties</NavLink></li>
+                                    <li><NavLink to="/dashboard/myAddedProperties"><BsFillHouseAddFill className="text-2xl"></BsFillHouseAddFill> My Added Properties</NavLink></li>
+                                    <li><NavLink to="/dashboard/myRequestedProperties"><FaHouseCircleExclamation className="text-2xl"></FaHouseCircleExclamation> My Requested Properties</NavLink></li>
+                                </>
+                                :     
+                                <>
+                                    <li><NavLink to="/dashboard/userProfile"><CgProfile className="text-2xl"></CgProfile> My Profile</NavLink></li>
+                                    <li><NavLink to="/dashboard/wishlist"><MdOutlineFavorite className="text-2xl"></MdOutlineFavorite> Wishlist</NavLink></li>
+                                    <li><NavLink to="/dashboard/propertyBought"><FaHouseCircleCheck className="text-2xl"></FaHouseCircleCheck> Property Bought</NavLink></li>
+                                    <li><NavLink to="/dashboard/myReviews"><TbStarsFilled className="text-2xl"></TbStarsFilled> My Reviews</NavLink></li>
+                                </>
+                        }
+                <hr className='border-green-400' />
+                {/* common sidebar */}
+                <>
+                    <li><NavLink to="/"><MdOutlineArrowBack className="text-2xl"></MdOutlineArrowBack> Back to Home</NavLink></li>
+                </>
+                </ul>
             </div>
         </div>
+        </div >
     );
 };
 
