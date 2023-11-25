@@ -4,10 +4,12 @@ import { loadCaptchaEnginge, LoadCanvasTemplate,  validateCaptcha } from 'react-
 import { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const Login = () => {
     const [error, setError]=useState('')
     const { userLogin, googleLogin } = useAuth();
+    const axiosPublic = useAxiosPublic();
     
     const navigate = useNavigate();
     const location = useLocation();
@@ -51,16 +53,26 @@ const Login = () => {
 
     const handleGoogleLogin = () => {
         googleLogin()
-            .then(res => {
-                const loggedUser = res.user;
-                console.log(loggedUser);
-                Swal.fire({
-                    title: "Login Successful!",
-                    text: `Welcome back`,
-                    icon: "success"
-                  });
-                  navigate(toGo, {replace:true});
-            })
+        .then(res => {
+            const loggedUser = res.user;
+            console.log(loggedUser);
+            const userInfo = {
+                email: loggedUser?.email,
+                name: loggedUser?.displayName
+            }
+
+            axiosPublic.post('/users', userInfo)
+                .then(res => {
+                    console.log(res.data);
+                    Swal.fire({
+                        title: "Login Successful!",
+                        text: `Welcome back`,
+                        icon: "success"
+                    });
+                    navigate(toGo, {replace:true});
+                })
+            
+        })
             .catch(error => {
                 console.log(error.message)
             })

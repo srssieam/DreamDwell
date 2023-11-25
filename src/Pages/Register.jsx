@@ -3,11 +3,13 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form"
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 
 const Register = () => {
     const { createUser, updateUserProfile, googleLogin } = useAuth()
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
+    const axiosPublic = useAxiosPublic();
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -15,17 +17,29 @@ const Register = () => {
 
     const onSubmit = data => {
         console.log(data)
+
+        const userInfo = { name: data.name, email: data.email }
+
         createUser(data.email, data.password)
             .then(res => {
                 const loggedUser = res.user;
                 console.log(loggedUser);
                 updateUserProfile(data.name, data.photoURL);
-                Swal.fire({
-                    title: "Account created!",
-                    text: "Your account has been successfully created. Welcome aboard!",
-                    icon: "success"
-                  });
-                  reset();
+
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        if(res.data.insertedId){
+                            console.log('user added to the database');
+                            Swal.fire({
+                                title: "Account created!",
+                                text: "Your account has been successfully created. Welcome aboard!",
+                                icon: "success"
+                            });
+                            reset();
+                            navigate('/')
+                        }
+                    })
+                
             })
             .catch(error => {
                 console.log(error.message)
@@ -37,12 +51,22 @@ const Register = () => {
             .then(res => {
                 const loggedUser = res.user;
                 console.log(loggedUser);
-                Swal.fire({
-                    title: "Login Successful!",
-                    text: `Welcome back`,
-                    icon: "success"
-                  });
-                  navigate(toGo, {replace:true});
+                const userInfo = {
+                    email: loggedUser?.email,
+                    name: loggedUser?.displayName
+                }
+
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        Swal.fire({
+                            title: "Login Successful!",
+                            text: `Welcome back`,
+                            icon: "success"
+                        });
+                        navigate(toGo, {replace:true});
+                    })
+                
             })
             .catch(error => {
                 console.log(error.message)
