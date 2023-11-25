@@ -6,16 +6,29 @@ import { FaBars, FaXmark } from "react-icons/fa6";
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { IoMdLogOut } from "react-icons/io";
+import Swal from "sweetalert2";
 
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false)
-    const { user } = useAuth();
+    const { user, logOut } = useAuth();
+
+    const handleLogout = () =>{
+        logOut()
+            .then(()=>{
+                Swal.fire({
+                    title: "Logged Out!",
+                    text: "You have been logged out successfully.",
+                    icon: "success"
+                  });
+            })
+    }
+
     const navLinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/allProperty'>Property</NavLink></li>
         <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
-        <li className='text-[#54dd42] ml-4 md:hidden'>Logout |-</li>
+        <li onClick={handleLogout} className='text-[#54dd42] ml-4 md:hidden'>Logout |-</li>
     </>
     return (
         <div className='fixed z-20 bg-black w-full'>
@@ -50,7 +63,7 @@ const Navbar = () => {
                     <div className="navbar-end">
                         {
                             user ? < div className="flex flex-row">
-                                    <li className=' list-none hidden md:flex items-center gap-2 lg:text-lg text-[#54dd42] hover:text-[#ffee00] cursor-pointer mr-4'><IoMdLogOut></IoMdLogOut> Logout</li>
+                                    <li onClick={handleLogout} className=' list-none hidden md:flex items-center gap-2 lg:text-lg text-[#54dd42] hover:text-[#ffee00] cursor-pointer mr-4'><IoMdLogOut></IoMdLogOut> Logout</li>
                                     <div className="flex-col md:flex items-center justify-center">
                                     {
                                         user?.photoURL && <img src={user.photoURL} alt="" className="w-10 h-10 md:w-12 md:h-12 rounded-full mr-3"/>
