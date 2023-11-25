@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 
 const Login = () => {
     const [error, setError]=useState('')
-    const { userLogin, googleLogin, user } = useAuth();
+    const { userLogin, googleLogin } = useAuth();
     
     const navigate = useNavigate();
     const location = useLocation();
@@ -41,6 +41,7 @@ const Login = () => {
                 })
                 .catch(error => {
                     console.log(error.message)
+                    setError("password and email does'nt match !!")
                 })
         }
         else {
