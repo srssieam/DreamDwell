@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 
 const Login = () => {
     const [error, setError]=useState('')
-    const { userLogin } = useAuth();
+    const { userLogin, googleLogin, user } = useAuth();
 
     useEffect(() => {
         // Snippet --> loadCaptchaEnginge(Number_Of_Captcha_Charcters, Background_Color, Font_Color, Special_Characters);
@@ -29,7 +29,7 @@ const Login = () => {
                     console.log(loggedUser);
                     Swal.fire({
                         title: "Login Successful!",
-                        text: "Welcome back",
+                        text: `Welcome back ${user.displayName}`,
                         icon: "success"
                       });
                       form.reset()
@@ -41,6 +41,22 @@ const Login = () => {
         else {
             setError('Invalid captcha');
         }
+    }
+
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(res => {
+                const loggedUser = res.user;
+                console.log(loggedUser);
+                Swal.fire({
+                    title: "Login Successful!",
+                    text: `Welcome back ${user.displayName}`,
+                    icon: "success"
+                  });
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
     }
 
     return (
@@ -75,7 +91,7 @@ const Login = () => {
                     <p className='text-xl text-center text-[#2f7c25]'>New Here? <Link className=' font-bold hover:underline' to='/register'>Create a new account</Link></p>
                     <p className='text-center'>Or Sign In with</p>
                     <div className='flex justify-center'>
-                        <button className=' bg-[#ffee00] hover:bg-[#54b647] font-semibold text-black p-3 flex gap-2 items-center'>Continue with<FcGoogle className='text-2xl'></FcGoogle></button>
+                        <button onClick={handleGoogleLogin} className=' bg-[#ffee00] hover:bg-[#54b647] font-semibold text-black p-3 flex gap-2 items-center'>Continue with<FcGoogle className='text-2xl'></FcGoogle></button>
                     </div>
                 </div>
             </div>
