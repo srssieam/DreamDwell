@@ -2,11 +2,12 @@ import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form"
 import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
 
 
 const Register = () => {
     const { createUser, updateUserProfile } = useAuth()
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, formState: { errors }, reset } = useForm()
 
     const onSubmit = data => {
         console.log(data)
@@ -14,7 +15,13 @@ const Register = () => {
             .then(res => {
                 const loggedUser = res.user;
                 console.log(loggedUser);
-                updateUserProfile(data.name, data.photoURL)
+                updateUserProfile(data.name, data.photoURL);
+                Swal.fire({
+                    title: "Account created!",
+                    text: "Your account has been successfully created. Welcome aboard!",
+                    icon: "success"
+                  });
+                  reset();
             })
             .catch(error => {
                 console.log(error.message)
