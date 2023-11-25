@@ -1,13 +1,17 @@
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form"
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 
 
 const Register = () => {
-    const { createUser, updateUserProfile } = useAuth()
+    const { createUser, updateUserProfile, googleLogin } = useAuth()
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    let toGo = location.state?.from?.pathname || "/"
 
     const onSubmit = data => {
         console.log(data)
@@ -22,6 +26,23 @@ const Register = () => {
                     icon: "success"
                   });
                   reset();
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
+    }
+
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(res => {
+                const loggedUser = res.user;
+                console.log(loggedUser);
+                Swal.fire({
+                    title: "Login Successful!",
+                    text: `Welcome back`,
+                    icon: "success"
+                  });
+                  navigate(toGo, {replace:true});
             })
             .catch(error => {
                 console.log(error.message)
@@ -71,7 +92,7 @@ const Register = () => {
                     <p className='text-xl text-center text-[#2f7c25]'>Already registered? <Link className=' font-bold hover:underline' to='/login'>Go to login</Link></p>
                     <p className='text-center'>Or Sign In with</p>
                     <div className='flex justify-center'>
-                        <button className=' bg-[#ffee00] hover:bg-[#54b647] font-semibold text-black p-3 flex gap-2 items-center'>Continue with<FcGoogle className='text-2xl'></FcGoogle></button>
+                        <button onClick={handleGoogleLogin} className=' bg-[#ffee00] hover:bg-[#54b647] font-semibold text-black p-3 flex gap-2 items-center'>Continue with<FcGoogle className='text-2xl'></FcGoogle></button>
                     </div>
                 </div>
             </div>

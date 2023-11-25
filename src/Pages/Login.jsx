@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from 'react-icons/fc';
 import { loadCaptchaEnginge, LoadCanvasTemplate,  validateCaptcha } from 'react-simple-captcha';
 import { useEffect, useState } from "react";
@@ -8,6 +8,10 @@ import Swal from "sweetalert2";
 const Login = () => {
     const [error, setError]=useState('')
     const { userLogin, googleLogin, user } = useAuth();
+    
+    const navigate = useNavigate();
+    const location = useLocation();
+    let toGo = location.state?.from?.pathname || "/"
 
     useEffect(() => {
         // Snippet --> loadCaptchaEnginge(Number_Of_Captcha_Charcters, Background_Color, Font_Color, Special_Characters);
@@ -29,10 +33,11 @@ const Login = () => {
                     console.log(loggedUser);
                     Swal.fire({
                         title: "Login Successful!",
-                        text: `Welcome back ${user.displayName}`,
+                        text: `Welcome back`,
                         icon: "success"
                       });
                       form.reset()
+                      navigate(toGo, {replace:true});
                 })
                 .catch(error => {
                     console.log(error.message)
@@ -50,9 +55,10 @@ const Login = () => {
                 console.log(loggedUser);
                 Swal.fire({
                     title: "Login Successful!",
-                    text: `Welcome back ${user.displayName}`,
+                    text: `Welcome back`,
                     icon: "success"
                   });
+                  navigate(toGo, {replace:true});
             })
             .catch(error => {
                 console.log(error.message)

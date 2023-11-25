@@ -1,10 +1,12 @@
 import { ThreeCircles } from "react-loader-spinner";
 import useAuth from "../hooks/useAuth";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 
 const PrivateRoute = ({ children }) => {
     const { user, loading } = useAuth();
+    const location = useLocation();
+
     if (loading) {
         return <div className="flex justify-center items-center h-[100vh]">
             <ThreeCircles
@@ -24,7 +26,7 @@ const PrivateRoute = ({ children }) => {
     if (user) {
         return children;
     }
-    return <Navigate to="/login"></Navigate>
+    return <Navigate to="/login" state={{ from: location }} replace></Navigate>
 };
 
 export default PrivateRoute;
