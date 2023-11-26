@@ -31,7 +31,7 @@ const Dashboard = () => {
                             isAdmin ?
                                
                                 <>
-                                    <li><NavLink to="/dashboard/adminHome"><IoMdHome className="text-2xl"></IoMdHome> Admin Home</NavLink></li>
+                                    <li><NavLink to="/dashboard/adminProfile"><CgProfile className="text-2xl"></CgProfile> Admin Profile</NavLink></li>
                                     <li><NavLink to="/dashboard/manageProperties"><FaRectangleList className="text-2xl"></FaRectangleList> Manage Properties</NavLink></li>
                                     <li><NavLink to="/dashboard/manageUsers"><FaUsers className="text-2xl"></FaUsers> Manage Users</NavLink></li>
                                     <li><NavLink to="/dashboard/manageReviews"><TbStarsFilled className="text-2xl"></TbStarsFilled> Manage Reviews</NavLink></li>
