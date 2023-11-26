@@ -4,8 +4,8 @@ const AdminProfile = () => {
     const { user } = useAuth();
     return (
         <div className="px-5">
-            <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic lg:my-5">Profile</h1>
-            <div className="grid grid-cols-2 gap-8 border border-green-700 rounded-md p-8">
+            <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic my-3 lg:my-5">Profile</h1>
+            <div className="grid md:grid-cols-2 gap-8 border border-green-700 rounded-md p-4 md:p-8">
                 <div className="space-y-3 flex flex-col justify-center items-center">
                     <img src={user.photoURL} className="w-40 h-40 object-cover rounded-full" alt="" />
                     <p className="text-2xl font-semibold">{user.displayName}</p>

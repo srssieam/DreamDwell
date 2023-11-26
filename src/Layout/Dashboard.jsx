@@ -1,6 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import dashboardBg from '../assets/dashboardBg.jpg'
-import { IoMdHome } from 'react-icons/io';
 import { FaRectangleList, FaUsers, FaHouseCircleCheck, FaHouseCircleExclamation } from 'react-icons/fa6';
 import { TbStarsFilled } from 'react-icons/tb';
 import { MdDashboardCustomize, MdOutlineArrowBack, MdOutlineFavorite } from "react-icons/md";
@@ -8,8 +7,8 @@ import { CgProfile } from "react-icons/cg";
 import { BsFillHouseAddFill } from "react-icons/bs";
 
 const Dashboard = () => {
-    const isAdmin = true;
-    const isAgent = false;
+    const isAdmin = false;
+    const isAgent = true;
     return (
         <div className='max-w-screen-xl mx-auto'>
             <div style={{ backgroundImage: `url(${dashboardBg})`, backgroundAttachment: 'fixed' }} className="text-white bg-no-repeat bg-cover py-5 md:py-10 lg::py-20 hidden md:block">
