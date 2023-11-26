@@ -2,10 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
-
+import useAuth from "../hooks/useAuth"
 
 const ManageUser = () => {
     const axiosSecure = useAxiosSecure();
+    const { user: currentUser } = useAuth();
+    console.log('from manage user',currentUser)
 
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
@@ -145,7 +147,13 @@ const ManageUser = () => {
                                     }
                                     
                                     <td>
-                                        <button onClick={()=>handleDelete(user)} className="p-2 rounded-md hover:bg-red-500 text-2xl text-white bg-red-700"><RiDeleteBin6Line></RiDeleteBin6Line></button>
+                                        {
+                                            currentUser.email === user.email ? 
+                                            <button onClick={()=>handleDelete(user)} className="p-2 rounded-md bg-red-400 text-2xl text-white " disabled><RiDeleteBin6Line></RiDeleteBin6Line></button>
+                                            :
+                                            <button onClick={()=>handleDelete(user)} className="p-2 rounded-md hover:bg-red-500 text-2xl text-white bg-red-700"><RiDeleteBin6Line></RiDeleteBin6Line></button>
+                                        }
+                                        
                                     </td>
                                 </tr>)
                             }
