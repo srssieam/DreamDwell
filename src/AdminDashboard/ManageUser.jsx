@@ -72,6 +72,36 @@ const ManageUser = () => {
             }
           });       
     }
+
+    const handleMakeAgent = (user) => {
+        console.log('user to update (agent)', user)
+
+        Swal.fire({
+            title: "Make Agent!",
+            text: "Are you sure you want to make this user an agent?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#00ad00",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes"
+          }).then((result) => {
+            if (result.isConfirmed) {    
+                axiosSecure.patch(`/users/agent/${user._id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        refetch();
+                        if(res.data.modifiedCount > 0){
+                            Swal.fire({
+                                title: "Promoted to Agent!",
+                                text: `${user.name} is an Agent Now!`,
+                                icon: "success",
+                                timer: 1500
+                            }); 
+                        }
+                     })
+            }
+          });
+    }
     
     return (
         <div className="px-5">
@@ -99,19 +129,24 @@ const ManageUser = () => {
                                     </td>
                                     <td>{user.email}</td>
                                     {
-                                        user.role === 'admin' ?
-                                        <th className="flex justify-center"><p className="text-green-600 p-2 border border-green-500">Admin</p></th>
-                                        :
-                                        <th className="flex gap-2">
-                                            <button onClick={()=>handleMakeAdmin(user)} className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-black ">Make Admin</button>
-                                            <button className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-black ">Make Agent</button>
+                                        user.role === 'admin'?
+                                        <td className="flex justify-center"><p className="text-red-600 p-2 border border-red-500">Admin</p></td>
+                                        : user.role === 'agent'?
+                                        <td className="flex justify-center gap-2">
+                                            <p className="text-red-600 p-2 border border-red-500">Agent</p>
                                             <button className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-black ">Mark as fraud</button>
-                                        </th>         
+                                        </td>
+                                        :
+                                        <td className="flex gap-2">
+                                            <button onClick={()=>handleMakeAdmin(user)} className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-black ">Make Admin</button>
+                                            <button onClick={()=>handleMakeAgent(user)} className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-black ">Make Agent</button>
+                                            <button className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-black ">Mark as fraud</button>
+                                        </td>         
                                     }
                                     
-                                    <th>
+                                    <td>
                                         <button onClick={()=>handleDelete(user)} className="p-2 rounded-md hover:bg-red-500 text-2xl text-white bg-red-700"><RiDeleteBin6Line></RiDeleteBin6Line></button>
-                                    </th>
+                                    </td>
                                 </tr>)
                             }
 
