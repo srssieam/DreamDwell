@@ -12,23 +12,26 @@ import './ReviewStyles.css'
 import { Autoplay, Grid, Pagination } from 'swiper/modules';
 
 
-import { useEffect, useState } from 'react';
-import useAxiosPublic from '../../hooks/useAxiosPublic';
+// import { useEffect, useState } from 'react';
+// import useAxiosPublic from '../../hooks/useAxiosPublic';
+
+import useReviews from '../../hooks/useReviews';
 
 const Review = () => {
-    const [reviews, setReviews] = useState([]);
-    const axiosPublic = useAxiosPublic();
+    const [reviews] = useReviews()
+    // const [reviews, setReviews] = useState([]);
+    // const axiosPublic = useAxiosPublic();
 
-    useEffect(() => {
-        axiosPublic.get('/reviews')
-            .then(res=> {
-                console.log(res.data)
-                setReviews(res.data)
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }, [axiosPublic])
+    // useEffect(() => {
+    //     axiosPublic.get('/reviews')
+    //         .then(res=> {
+    //             console.log(res.data)
+    //             setReviews(res.data)
+    //         })
+    //         .catch(error => {
+    //             console.log(error)
+    //         })
+    // }, [axiosPublic])
     
     return (
         <div className="max-w-screen-xl mx-auto my-16 px-6 lg:px-0">
