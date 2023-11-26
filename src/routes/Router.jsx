@@ -9,6 +9,7 @@ import ErrorPage from "../Pages/ErrorPage";
 import ManageUser from "../AdminDashboard/ManageUser";
 import ManageReviews from "../AdminDashboard/ManageReviews";
 import AdminProfile from "../AdminDashboard/AdminProfile";
+import ManageProperties from "../AdminDashboard/ManageProperties";
 
 
 const Router = createBrowserRouter([
@@ -43,6 +44,10 @@ const Router = createBrowserRouter([
             {
                 path:'/dashboard/manageUsers',
                 element:<ManageUser></ManageUser>
+            },
+            {
+                path:'/dashboard/manageProperties',
+                element:<ManageProperties></ManageProperties>
             },
             {
                 path:'/dashboard/manageReviews',
