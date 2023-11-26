@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { AiOutlineStop } from "react-icons/ai";
+import { MdAdminPanelSettings } from "react-icons/md";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth"
 
@@ -104,6 +106,36 @@ const ManageUser = () => {
             }
           });
     }
+
+    const handleMarkAsFraud = (user) => {
+        console.log('user to mark as fraud', user)
+
+        Swal.fire({
+            title: "Mark as fraud!",
+            text: "Are you sure you want to mark this user as fraud?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#00ad00",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes"
+          }).then((result) => {
+            if (result.isConfirmed) {    
+                axiosSecure.patch(`/users/fraud/${user._id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        refetch();
+                        if(res.data.modifiedCount > 0){
+                            Swal.fire({
+                                title: "Marked as fraud!",
+                                text: `${user.name} is marked as fraud!`,
+                                icon: "success",
+                                timer: 1500
+                            }); 
+                        }
+                     })
+            }
+          });
+    }
     
     return (
         <div className="px-5">
@@ -132,17 +164,21 @@ const ManageUser = () => {
                                     <td>{user.email}</td>
                                     {
                                         user.role === 'admin'?
-                                        <td className="flex justify-center"><p className="text-red-600 p-2 border border-red-500">Admin</p></td>
+                                        <td className="flex justify-start"><p className="text-green-700 font-semibold text-lg p-1 border-2 border-green-700 flex gap-2 items-center"><MdAdminPanelSettings className="text-xl"></MdAdminPanelSettings>Admin</p></td>
                                         : user.role === 'agent'?
-                                        <td className="flex justify-center gap-2">
-                                            <p className="text-red-600 p-2 border border-red-500">Agent</p>
-                                            <button className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-black ">Mark as fraud</button>
+                                        <td className="flex justify-start gap-2">
+                                            <p className="text-green-700 font-semibold text-lg p-1">Agent</p>
+                                            <button onClick={()=>handleMarkAsFraud(user)} className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-gray-950 font-semibold ">Mark as fraud</button>
+                                        </td>
+                                        : user.role === 'fraud'?
+                                        <td className="flex justify-start">
+                                            <p className="text-red-600 text-lg flex items-center gap-2"><AiOutlineStop className="text-xl"></AiOutlineStop> Fraud</p>
                                         </td>
                                         :
                                         <td className="flex gap-2">
-                                            <button onClick={()=>handleMakeAdmin(user)} className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-black ">Make Admin</button>
-                                            <button onClick={()=>handleMakeAgent(user)} className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-black ">Make Agent</button>
-                                            <button className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-black ">Mark as fraud</button>
+                                            <button onClick={()=>handleMakeAdmin(user)} className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-gray-950 font-semibold ">Make Admin</button>
+                                            <button onClick={()=>handleMakeAgent(user)} className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-gray-950 font-semibold ">Make Agent</button>
+                                            <button onClick={()=>handleMarkAsFraud(user)} className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-gray-950 font-semibold ">Mark as fraud</button>
                                         </td>         
                                     }
                                     
