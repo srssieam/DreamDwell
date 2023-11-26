@@ -59,6 +59,7 @@ const ManageUser = () => {
                 axiosSecure.patch(`/users/admin/${user._id}`)
                     .then(res => {
                         console.log(res.data);
+                        refetch();
                         if(res.data.modifiedCount > 0){
                             Swal.fire({
                                 title: "Promoted to Admin!",
@@ -97,11 +98,17 @@ const ManageUser = () => {
                                         {user.name}
                                     </td>
                                     <td>{user.email}</td>
-                                    <th className="flex gap-2">
-                                        <button onClick={()=>handleMakeAdmin(user)} className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-black ">Make Admin</button>
-                                        <button className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-black ">Make Agent</button>
-                                        <button className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-black ">Mark as fraud</button>
-                                    </th>
+                                    {
+                                        user.role === 'admin' ?
+                                        <th className="flex justify-center"><p className="text-green-600 p-2 border border-green-500">Admin</p></th>
+                                        :
+                                        <th className="flex gap-2">
+                                            <button onClick={()=>handleMakeAdmin(user)} className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-black ">Make Admin</button>
+                                            <button className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-black ">Make Agent</button>
+                                            <button className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-black ">Mark as fraud</button>
+                                        </th>         
+                                    }
+                                    
                                     <th>
                                         <button onClick={()=>handleDelete(user)} className="p-2 rounded-md hover:bg-red-500 text-2xl text-white bg-red-700"><RiDeleteBin6Line></RiDeleteBin6Line></button>
                                     </th>
