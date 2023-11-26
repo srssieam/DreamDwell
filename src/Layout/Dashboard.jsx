@@ -12,7 +12,7 @@ const Dashboard = () => {
     const isAgent = false;
     return (
         <div className='max-w-screen-xl mx-auto'>
-            <div style={{ backgroundImage: `url(${dashboardBg})`, backgroundAttachment: 'fixed' }} className="text-white bg-no-repeat bg-cover py-5 md:py-10 lg::py-20">
+            <div style={{ backgroundImage: `url(${dashboardBg})`, backgroundAttachment: 'fixed' }} className="text-white bg-no-repeat bg-cover py-5 md:py-10 lg::py-20 hidden md:block">
                 <div className='bg-[#00000080] bg-blend-darken max-w-screen-xl mx-auto md:p-10'>
                     <h1 className="text-5xl lg:text-7xl text-center text-[#ffee00]">Dashboard</h1>
                 </div>
@@ -26,7 +26,7 @@ const Dashboard = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 min-h-full bg-black text-lg space-y-3 ">
+                    <ul className="menu p-2 md:p-4 w-52 md:w-80 min-h-full bg-black md:text-lg space-y-3 ">
                         {
                             isAdmin ?
                                

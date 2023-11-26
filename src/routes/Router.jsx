@@ -7,6 +7,7 @@ import Dashboard from "../Layout/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../Pages/ErrorPage";
 import ManageUser from "../AdminDashboard/ManageUser";
+import ManageReviews from "../AdminDashboard/ManageReviews";
 
 
 const Router = createBrowserRouter([
@@ -37,6 +38,10 @@ const Router = createBrowserRouter([
             {
                 path:'/dashboard/manageUsers',
                 element:<ManageUser></ManageUser>
+            },
+            {
+                path:'/dashboard/manageReviews',
+                element:<ManageReviews></ManageReviews>
             }
         ]
     }
