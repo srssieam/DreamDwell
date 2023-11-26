@@ -1,8 +1,40 @@
+import Swal from "sweetalert2";
 import useReviews from "../hooks/useReviews";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 
 const ManageReviews = () => {
-    const [reviews] = useReviews()
+    const [reviews, refetch] = useReviews();
+    const axiosSecure = useAxiosSecure();
+
+    const handleDelete = (review) =>{
+        console.log('comment to delete', review)
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {    
+                axiosSecure.delete(`/reviews/${review._id}`)
+                    .then(res =>{
+                        // console.log(res.data);
+                        refetch()
+                        if(res.data.deletedCount > 0){
+                            Swal.fire({
+                                title: "Review Deleted!",
+                                text: "The review has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                })
+            }
+          });
+    }
+
     return (
         <div className="px-5">
             <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic lg:my-5">Manage All Reviews</h1>
@@ -19,7 +51,7 @@ const ManageReviews = () => {
                             </div>
                         </div>
                         <div className="text-center mt-6">
-                            <button className="text-white bg-red-700 hover:bg-red-600 rounded-md p-2">Delete Review</button>
+                            <button onClick={()=>handleDelete(review)} className="text-white bg-red-700 hover:bg-red-600 rounded-md p-2">Delete Review</button>
                         </div>
                     </div>)
                 }
