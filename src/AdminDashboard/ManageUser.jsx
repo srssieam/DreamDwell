@@ -42,6 +42,35 @@ const ManageUser = () => {
             }
           });
     }
+
+    const handleMakeAdmin = (user) => {
+        console.log('user to update (admin)', user)
+
+        Swal.fire({
+            title: "Make Admin!",
+            text: "Are you sure you want to make this user an admin?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#00ad00",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes"
+          }).then((result) => {
+            if (result.isConfirmed) {    
+                axiosSecure.patch(`/users/admin/${user._id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        if(res.data.modifiedCount > 0){
+                            Swal.fire({
+                                title: "Promoted to Admin!",
+                                text: `${user.name} is Admin Now!`,
+                                icon: "success",
+                                timer: 1500
+                            }); 
+                        }
+                     })
+            }
+          });       
+    }
     
     return (
         <div className="px-5">
@@ -69,7 +98,7 @@ const ManageUser = () => {
                                     </td>
                                     <td>{user.email}</td>
                                     <th className="flex gap-2">
-                                        <button className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-black ">Make Admin</button>
+                                        <button onClick={()=>handleMakeAdmin(user)} className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-black ">Make Admin</button>
                                         <button className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-black ">Make Agent</button>
                                         <button className="rounded-md hover:text-yellow-500 p-2 text-green-600 border border-green-600 bg-black ">Mark as fraud</button>
                                     </th>
