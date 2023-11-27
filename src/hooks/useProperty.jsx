@@ -8,7 +8,7 @@ const useProperty = () => {
     const { data: properties = [], refetch } = useQuery({
         queryKey: ['properties', 'verified'],
         queryFn: async() => {
-            const res = await axiosPublic.get('/properties?verification_status=verified');
+            const res = await axiosPublic.get('/properties');
             return res.data;
         }
     })
