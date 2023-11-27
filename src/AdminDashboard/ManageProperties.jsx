@@ -118,6 +118,7 @@ const ManageProperties = () => {
                                 <td>
                                     <p className="text-lg font-semibold">{property.property_title}</p>
                                     <p className="text-green-700 flex"><MdLocationPin className="text-xl"></MdLocationPin> {property.property_location}</p>
+                                    <p>Type: {property.category}</p>
                                     <p>{property.price_range.lower_price} $ - {property.price_range.upper_price} $</p>
                                 </td>
                                 <td>

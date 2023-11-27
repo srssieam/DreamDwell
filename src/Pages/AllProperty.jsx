@@ -11,11 +11,12 @@ const AllProperty = () => {
 
     const [tabIdx, setTabIdx] = useState(0);
     const axiosPublic = useAxiosPublic();
+    const [search, setSearch] = useState('');
 
     const { data: properties = [] } = useQuery({
-        queryKey: ['verifiedProperty'],
+        queryKey: ['verifiedProperty', search],
         queryFn: async () => {
-            const res = await axiosPublic.get('/allVerifiedProperties');
+            const res = await axiosPublic.get(`/allVerifiedProperties?search=${search}`);
             return res.data;
         }
     })
@@ -26,8 +27,11 @@ const AllProperty = () => {
     const buildings = properties.filter(property => property.category === "Building");
     const condominiums = properties.filter(property => property.category === "Condominium");
 
-    const handleSearch = e =>{
-        console.log(e)
+    const handleSearch = e => {
+        e.preventDefault();
+        const searchText = e.target.search.value;
+        setSearch(searchText);
+        e.target.reset();
     }
 
     return (
@@ -42,13 +46,18 @@ const AllProperty = () => {
                 <form onSubmit={handleSearch}>
                     <fieldset className="form-control lg:w-80">
                         <div className="relative">
-                            <input type="text" placeholder="Search item" name='search' className="input border border-[#1c691c] w-full" />
+                            <input type="text" placeholder="Search property" name='search' className="input border border-[#1c691c] w-full" />
                             <button type="submit" className="btn bg-[#1c691c] hover:bg-[#389238] text-[#ffa600] border-none absolute top-0 right-0 rounded-l-none text-xl"><ImSearch></ImSearch></button>
                         </div>
                     </fieldset>
                 </form>
             </div>
-            <Tabs selectedTabClassName="bg-transparent text-green-600 underline" defaultIndex={tabIdx} onSelect={(index) => setTabIdx(index)}>
+            <Tabs selectedTabClassName="bg-transparent text-green-600 underline"
+                defaultIndex={tabIdx}
+                onSelect={(index) => {
+                    setTabIdx(index)
+                    setSearch('')
+                }}>
                 <TabList className="text-center flex flex-wrap justify-center gap-6 font-semibold">
                     <Tab className="hover:text-green-600 cursor-pointer">All</Tab>
                     <Tab className="hover:text-green-600 cursor-pointer">Apartment</Tab>
@@ -58,46 +67,88 @@ const AllProperty = () => {
                     <Tab className="hover:text-green-600 cursor-pointer">Condominium</Tab>
                 </TabList>
                 <TabPanel>
-                    <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 my-9'>
-                        {
-                            properties.map(property => <PropertyCard key={property._id} property={property} ></PropertyCard>)
-                        }
-                    </div>
+                    {
+                        properties.length > 0 ?
+                            <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 my-9'>
+                                {
+                                    properties.map(property => <PropertyCard key={property._id} property={property} ></PropertyCard>)
+                                }
+                            </div>
+                            :
+                            <div className='text-5xl font-semibold min-h-[50vh] flex justify-center items-center'>
+                                <h1>Property not found</h1>
+                            </div>
+                    }
                 </TabPanel>
                 <TabPanel>
-                    <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 my-9'>
-                        {
-                            apartments.map(apartment => <PropertyCard key={apartment._id} property={apartment} ></PropertyCard>)
-                        }
-                    </div>
+                    {
+                        properties.length > 0 ?
+                            <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 my-9'>
+                                {
+                                    apartments.map(apartment => <PropertyCard key={apartment._id} property={apartment} ></PropertyCard>)
+                                }
+                            </div>
+                            :
+                            <div className='text-5xl font-semibold min-h-[50vh] flex justify-center items-center'>
+                                <h1>Apartment not found</h1>
+                            </div>
+                    }
                 </TabPanel>
                 <TabPanel>
-                    <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 my-9'>
-                        {
-                            houses.map(house => <PropertyCard key={house._id} property={house} ></PropertyCard>)
-                        }
-                    </div>
+                    {
+                        properties.length > 0 ?
+                            <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 my-9'>
+                                {
+                                    houses.map(house => <PropertyCard key={house._id} property={house} ></PropertyCard>)
+                                }
+                            </div>
+                            :
+                            <div className='text-5xl font-semibold min-h-[50vh] flex justify-center items-center'>
+                                <h1>House not found</h1>
+                            </div>
+                    }
                 </TabPanel>
                 <TabPanel>
-                    <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 my-9'>
-                        {
-                            offices.map(office => <PropertyCard key={office._id} property={office} ></PropertyCard>)
-                        }
-                    </div>
+                    {
+                        properties.length > 0 ?
+                            <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 my-9'>
+                                {
+                                    offices.map(office => <PropertyCard key={office._id} property={office} ></PropertyCard>)
+                                }
+                            </div>
+                            :
+                            <div className='text-5xl font-semibold min-h-[50vh] flex justify-center items-center'>
+                                <h1>Office not found</h1>
+                            </div>
+                    }
                 </TabPanel>
                 <TabPanel>
-                    <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 my-9'>
-                        {
-                            buildings.map(building => <PropertyCard key={building._id} property={building} ></PropertyCard>)
-                        }
-                    </div>
+                    {
+                        properties.length > 0 ?
+                            <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 my-9'>
+                                {
+                                    buildings.map(building => <PropertyCard key={building._id} property={building} ></PropertyCard>)
+                                }
+                            </div>
+                            :
+                            <div className='text-5xl font-semibold min-h-[50vh] flex justify-center items-center'>
+                                <h1>building not found</h1>
+                            </div>
+                    }
                 </TabPanel>
                 <TabPanel>
-                    <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 my-9'>
-                        {
-                            condominiums.map(condominium => <PropertyCard key={condominium._id} property={condominiums} ></PropertyCard>)
-                        }
-                    </div>
+                    {
+                        properties.length > 0 ?
+                            <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 my-9'>
+                                {
+                                    condominiums.map(condominium => <PropertyCard key={condominium._id} property={condominium} ></PropertyCard>)
+                                }
+                            </div>
+                            :
+                            <div className='text-5xl font-semibold min-h-[50vh] flex justify-center items-center'>
+                                <h1>Condominium not found</h1>
+                            </div>
+                    }
                 </TabPanel>
             </Tabs>
 
