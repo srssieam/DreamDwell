@@ -89,7 +89,6 @@ const AdvertiseProperty = () => {
                                 </div>
                                 <p className='text-[#368a2b]'>Agent: {property.agent_name}</p>
                                 <p>$ ({property.price_range.lower_price} - {property.price_range.upper_price})</p>
-                                <p>{property._id}</p>
                             </div>
                         </div>
                         {
