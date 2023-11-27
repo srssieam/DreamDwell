@@ -5,6 +5,7 @@ import PropertyCard from '../Shared/PropertyCard';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { useState } from 'react';
+import { ImSearch } from 'react-icons/im';
 
 const AllProperty = () => {
 
@@ -25,6 +26,10 @@ const AllProperty = () => {
     const buildings = properties.filter(property => property.category === "Building");
     const condominiums = properties.filter(property => property.category === "Condominium");
 
+    const handleSearch = e =>{
+        console.log(e)
+    }
+
     return (
         <div className='max-w-screen-xl mx-auto pt-20 px-5 lg:px-0'>
             <div style={{ backgroundImage: `url(${propertyBg})`, backgroundAttachment: 'fixed' }} className="text-white bg-no-repeat bg-cover py-5 md:py-10 lg::py-20 hidden md:block">
@@ -33,14 +38,24 @@ const AllProperty = () => {
                 </div>
             </div>
             <h1 className='text-2xl font-semibold text-center underline md:hidden pt-[20px] mb-5'>All Property</h1>
-            <Tabs selectedTabClassName="bg-transparent text-green-600" defaultIndex={tabIdx} onSelect={(index) => setTabIdx(index)}>
-                <TabList className="text-center font-semibold">
-                    <Tab>All</Tab>
-                    <Tab>Apartment</Tab>
-                    <Tab>house</Tab>
-                    <Tab>Office</Tab>
-                    <Tab>Building</Tab>
-                    <Tab>Condominium</Tab>
+            <div className="flex justify-center my-6">
+                <form onSubmit={handleSearch}>
+                    <fieldset className="form-control lg:w-80">
+                        <div className="relative">
+                            <input type="text" placeholder="Search item" name='search' className="input border border-[#1c691c] w-full" />
+                            <button type="submit" className="btn bg-[#1c691c] hover:bg-[#389238] text-[#ffa600] border-none absolute top-0 right-0 rounded-l-none text-xl"><ImSearch></ImSearch></button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <Tabs selectedTabClassName="bg-transparent text-green-600 underline" defaultIndex={tabIdx} onSelect={(index) => setTabIdx(index)}>
+                <TabList className="text-center flex flex-wrap justify-center gap-6 font-semibold">
+                    <Tab className="hover:text-green-600 cursor-pointer">All</Tab>
+                    <Tab className="hover:text-green-600 cursor-pointer">Apartment</Tab>
+                    <Tab className="hover:text-green-600 cursor-pointer">house</Tab>
+                    <Tab className="hover:text-green-600 cursor-pointer">Office</Tab>
+                    <Tab className="hover:text-green-600 cursor-pointer">Building</Tab>
+                    <Tab className="hover:text-green-600 cursor-pointer">Condominium</Tab>
                 </TabList>
                 <TabPanel>
                     <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 my-9'>
