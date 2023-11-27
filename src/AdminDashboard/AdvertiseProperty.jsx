@@ -24,6 +24,7 @@ const AdvertiseProperty = () => {
                 console.log(res.data);
                 refetch()
                 if (res.data.insertedId) {
+                    refetch();
                     Swal.fire({
                         title: "Property Advertised!",
                         text: "The property has been successfully advertised.",
@@ -35,7 +36,19 @@ const AdvertiseProperty = () => {
     }
 
     const handleRemove = property => {
-        console.log('property to be advertised', property)
+        console.log('property to be removed', property)
+        axiosSecure.delete(`/advertisement/${property._id}`)
+                    .then(res =>{
+                        console.log(res.data);
+                        refetch();
+                        if(res.data.deletedCount > 0){
+                            Swal.fire({
+                                title: "removed!",
+                                text: "Advertisement has been removed.",
+                                icon: "success"
+                            });
+                        }
+                })
     }
 
 
