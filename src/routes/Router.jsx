@@ -10,6 +10,7 @@ import ManageUser from "../AdminDashboard/ManageUser";
 import ManageReviews from "../AdminDashboard/ManageReviews";
 import AdminProfile from "../AdminDashboard/AdminProfile";
 import ManageProperties from "../AdminDashboard/ManageProperties";
+import AllProperty from "../Pages/AllProperty";
 
 
 const Router = createBrowserRouter([
@@ -21,6 +22,10 @@ const Router = createBrowserRouter([
             {
                 path:'/',
                 element:<Home></Home>
+            },
+            {
+                path:'allProperty',
+                element:<AllProperty></AllProperty>
             },
             {
                 path:'login',

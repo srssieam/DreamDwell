@@ -36,7 +36,7 @@ const Navbar = () => {
 
     const navLinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='/allProperty'>Property</NavLink></li>
+        <li><NavLink to='/allProperty'>All Property</NavLink></li>
         <li onClick={handleDashboard}><NavLink to='/dashboard'>Dashboard</NavLink></li>
         <li onClick={handleLogout} className='text-[#54dd42] ml-4 md:hidden'>Logout |-</li>
     </>

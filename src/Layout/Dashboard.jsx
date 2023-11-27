@@ -21,6 +21,7 @@ const Dashboard = () => {
                 <div className="drawer-content">
                     {/* Page content here */}
                     <label htmlFor="my-drawer-2" className="text-4xl text-green-600 drawer-button lg:hidden"><MdDashboardCustomize></MdDashboardCustomize></label>
+                    <h1 className='text-2xl font-semibold text-center underline md:hidden'>Dashboard</h1>
                     <Outlet></Outlet>
                 </div>
                 <div className="drawer-side">
