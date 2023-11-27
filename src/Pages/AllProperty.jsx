@@ -10,7 +10,7 @@ const AllProperty = () => {
     const { data: properties = [] } = useQuery({
         queryKey: ['verifiedProperty'],
         queryFn: async() => {
-            const res = await axiosPublic.get('/properties?verification_status=verified');
+            const res = await axiosPublic.get('/allVerifiedProperties');
             return res.data;
         }
     })

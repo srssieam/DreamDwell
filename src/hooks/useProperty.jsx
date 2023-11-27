@@ -6,7 +6,7 @@ const useProperty = () => {
     const axiosPublic = useAxiosPublic();
 
     const { data: properties = [], refetch } = useQuery({
-        queryKey: ['properties', 'verified'],
+        queryKey: ['properties'],
         queryFn: async() => {
             const res = await axiosPublic.get('/properties');
             return res.data;
