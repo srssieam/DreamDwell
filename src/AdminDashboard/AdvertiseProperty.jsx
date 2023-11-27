@@ -1,10 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import { MdOutlineVerified } from "react-icons/md";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 
 const AdvertiseProperty = () => {
     const axiosPublic = useAxiosPublic();
-    const { data: properties = [] } = useQuery({
+    const axiosSecure = useAxiosSecure();
+    const { data: properties = [], refetch } = useQuery({
         queryKey: ['verifiedProperty'],
         queryFn: async () => {
             const res = await axiosPublic.get('/allVerifiedProperties');
@@ -12,12 +16,26 @@ const AdvertiseProperty = () => {
         }
     });
 
-    const handleAdvertise = property =>{
-        console.log('property to be advertised')
+    const handleAdvertise = property => {
+        console.log('property to be advertised', property)
+
+        axiosSecure.post('/advertisement', property)
+            .then(res => {
+                console.log(res.data);
+                refetch()
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        title: "Property Advertised!",
+                        text: "The property has been successfully advertised.",
+                        icon: "success",
+                        timer: 1500
+                    });
+                }
+            })
     }
 
-    const handleRemove = property =>{
-        console.log('property to be advertised')
+    const handleRemove = property => {
+        console.log('property to be advertised', property)
     }
 
 
@@ -29,18 +47,25 @@ const AdvertiseProperty = () => {
 
             <div className="border-2 border-green-700 p-4 grid md:grid-cols-2 gap-6">
                 {
-                    properties.map((property, idx) => <div key={idx} className="p-4 border">
+                    properties.map((property, idx) => <div key={idx} className="p-4 border flex flex-col justify-between">
                         <div className='flex flex-col gap-4'>
                             <img src={property.property_image} className='w-full h-56 object-cover rounded-md' alt="" />
-                            <div className='text-center lg:text-left'>
-                                <h3 className='text-xl font-semibold'>{property.property_title}</h3>
+                            <div className=''>
+                                <div className="flex items-center justify-between">
+                                    <h5 className="font-sans text-xl font-medium">
+                                        {property.property_title}
+                                    </h5>
+                                    <p className="flex items-center gap-1.5 font-sans text-green-700 ">
+                                        <MdOutlineVerified className="text-xl "></MdOutlineVerified> verified
+                                    </p>
+                                </div>
                                 <p className='text-[#368a2b]'>Agent: {property.agent_name}</p>
                                 <p>$ ({property.price_range.lower_price} - {property.price_range.upper_price})</p>
                             </div>
                         </div>
                         <div className="text-center flex gap-4 justify-center mt-6">
-                            <button onClick={()=>handleAdvertise(property)} className="text-white bg-green-700 hover:bg-green-600 rounded-md p-2">Advertise</button>
-                            <button onClick={()=>handleRemove(property)} className="text-white bg-red-700 hover:bg-red-600 rounded-md p-2">Remove Advertise</button>
+                            <button onClick={() => handleAdvertise(property)} className="text-white bg-green-700 hover:bg-green-600 rounded-md p-2">Advertise</button>
+                            <button onClick={() => handleRemove(property)} className="text-white bg-red-700 hover:bg-red-600 rounded-md p-2">Remove Advertise</button>
                         </div>
                     </div>)
                 }
