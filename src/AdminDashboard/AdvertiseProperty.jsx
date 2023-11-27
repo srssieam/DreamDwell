@@ -3,11 +3,16 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 import { MdOutlineVerified } from "react-icons/md";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useAdvertisement from "../hooks/useAdvertisement";
 
 
 const AdvertiseProperty = () => {
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
+
+    const [advertisement] = useAdvertisement();
+    console.log(advertisement, 'from useAdvertise')
+
     const { data: properties = [], refetch } = useQuery({
         queryKey: ['verifiedProperty'],
         queryFn: async () => {
@@ -18,6 +23,15 @@ const AdvertiseProperty = () => {
 
     const handleAdvertise = property => {
         console.log('property to be advertised', property)
+
+        if(advertisement.length >= 6){
+            Swal.fire({
+                title: "Denied!",
+                text: "You can't advertise more then 6 properties.",
+                icon: "error",
+            });
+            return;
+        }
 
         axiosSecure.post('/advertisement', property)
             .then(res => {
