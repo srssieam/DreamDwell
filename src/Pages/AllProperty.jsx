@@ -1,18 +1,29 @@
 import { MdLocationPin, MdOutlineVerified } from 'react-icons/md';
 import propertyBg from '../assets/dashboardBg.jpg'
-import useProperty from '../hooks/useProperty';
+import useAxiosPublic from '../hooks/useAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
 
 const AllProperty = () => {
-    const [properties] = useProperty();
+
+    const axiosPublic = useAxiosPublic();
+
+    const { data: properties = [] } = useQuery({
+        queryKey: ['verifiedProperty'],
+        queryFn: async() => {
+            const res = await axiosPublic.get('/properties?verification_status=verified');
+            return res.data;
+        }
+    })
+
     return (
-        <div className='max-w-screen-xl mx-auto pt-20'>
+        <div className='max-w-screen-xl mx-auto pt-20 px-5 lg:px-0'>
             <div style={{ backgroundImage: `url(${propertyBg})`, backgroundAttachment: 'fixed' }} className="text-white bg-no-repeat bg-cover py-5 md:py-10 lg::py-20 hidden md:block">
                 <div className='bg-[#00000080] bg-blend-darken max-w-screen-xl mx-auto md:p-10'>
                     <h1 className="text-5xl lg:text-7xl text-center text-[#ffee00]">All Property</h1>
                 </div>
             </div>
             <h1 className='text-2xl font-semibold text-center underline md:hidden pt-[20px] mb-5'>All Property</h1>
-            <div className='grid grid-cols-3 gap-8 my-20'>
+            <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 my-20'>
                 {
                     properties.map(property => <div key={property._id} className="p-4 flex w-full max-w-[26rem] flex-col justify-between rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg">
                         <div className=" h-[270px] overflow-hidden shadow-lg rounded-xl">
@@ -31,8 +42,9 @@ const AllProperty = () => {
                                 </p>
                             </div>
                             <p className="flex"><MdLocationPin className="text-xl"></MdLocationPin>{property.property_location}</p>
+                            <p>{property.category}</p>
                             <p className='mb-3'>$ ({property.price_range.lower_price} - {property.price_range.upper_price})</p>
-                            <div className='flex flex-col items-center lg:flex-row gap-4'>
+                            <div className='flex items-center gap-4'>
                                 <img src={property.agent_image} className='w-11 h-11 object-cover rounded-full' alt="" />
                                 <div className='text-center lg:text-left'>
                                     <h3 className='text-xl font-semibold'>{property.agent_name}</h3>

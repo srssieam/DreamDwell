@@ -6,9 +6,9 @@ const useProperty = () => {
     const axiosPublic = useAxiosPublic();
 
     const { data: properties = [], refetch } = useQuery({
-        queryKey: ['properties'],
+        queryKey: ['properties', 'verified'],
         queryFn: async() => {
-            const res = await axiosPublic.get('/properties');
+            const res = await axiosPublic.get('/properties?verification_status=verified');
             return res.data;
         }
     })
