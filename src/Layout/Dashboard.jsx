@@ -5,6 +5,7 @@ import { TbStarsFilled } from 'react-icons/tb';
 import { MdDashboardCustomize, MdOutlineArrowBack, MdOutlineFavorite } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { BsFillHouseAddFill } from "react-icons/bs";
+import { RiAdvertisementLine } from "react-icons/ri";
 
 const Dashboard = () => {
     const isAdmin = true;
@@ -35,6 +36,7 @@ const Dashboard = () => {
                                     <li><NavLink to="/dashboard/manageProperties"><FaRectangleList className="text-2xl"></FaRectangleList> Manage Properties</NavLink></li>
                                     <li><NavLink to="/dashboard/manageUsers"><FaUsers className="text-2xl"></FaUsers> Manage Users</NavLink></li>
                                     <li><NavLink to="/dashboard/manageReviews"><TbStarsFilled className="text-2xl"></TbStarsFilled> Manage Reviews</NavLink></li>
+                                    <li><NavLink to="/dashboard/advertise"><RiAdvertisementLine className="text-2xl"></RiAdvertisementLine> Advertise Property</NavLink></li>
                                 </>
                                 : isAgent ?   
                                 <>

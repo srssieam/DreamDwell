@@ -13,6 +13,7 @@ import ManageProperties from "../AdminDashboard/ManageProperties";
 import AllProperty from "../Pages/AllProperty";
 import PropertyDetails from "../Pages/PropertyDetails";
 import axios from "axios";
+import AdvertiseProperty from "../AdminDashboard/AdvertiseProperty";
 
 
 const Router = createBrowserRouter([
@@ -64,6 +65,10 @@ const Router = createBrowserRouter([
             {
                 path:'/dashboard/manageReviews',
                 element:<ManageReviews></ManageReviews>
+            },
+            {
+                path:'/dashboard/advertise',
+                element:<AdvertiseProperty></AdvertiseProperty>
             }
         ]
     }
