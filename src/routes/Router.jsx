@@ -11,6 +11,8 @@ import ManageReviews from "../AdminDashboard/ManageReviews";
 import AdminProfile from "../AdminDashboard/AdminProfile";
 import ManageProperties from "../AdminDashboard/ManageProperties";
 import AllProperty from "../Pages/AllProperty";
+import PropertyDetails from "../Pages/PropertyDetails";
+import axios from "axios";
 
 
 const Router = createBrowserRouter([
@@ -26,6 +28,11 @@ const Router = createBrowserRouter([
             {
                 path:'allProperty',
                 element:<AllProperty></AllProperty>
+            },
+            {
+                path:'propertyDetails/:id',
+                element:<PrivateRoute><PropertyDetails></PropertyDetails></PrivateRoute>,
+                loader: ({params})=> axios.get(`http://localhost:5000/v1/api/allVerifiedProperties/${params.id}`)
             },
             {
                 path:'login',

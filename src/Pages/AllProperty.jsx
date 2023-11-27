@@ -2,6 +2,7 @@ import { MdLocationPin, MdOutlineVerified } from 'react-icons/md';
 import propertyBg from '../assets/dashboardBg.jpg'
 import useAxiosPublic from '../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 
 const AllProperty = () => {
 
@@ -9,7 +10,7 @@ const AllProperty = () => {
 
     const { data: properties = [] } = useQuery({
         queryKey: ['verifiedProperty'],
-        queryFn: async() => {
+        queryFn: async () => {
             const res = await axiosPublic.get('/allVerifiedProperties');
             return res.data;
         }
@@ -53,9 +54,11 @@ const AllProperty = () => {
                             
                         </div>
                         <div className="mt-2">
-                            <button className="w-full rounded-lg bg-green-600 py-3.5 px-7 text-center text-sm font-bold uppercase text-white hover:bg-green-500">
-                                Show details
-                            </button>
+                            <Link to={`/propertyDetails/${property._id}`}>
+                                <button className="w-full rounded-lg bg-green-600 py-3.5 px-7 text-center text-sm font-bold uppercase text-white hover:bg-green-500">
+                                    Show details
+                                </button>
+                            </Link>
                         </div>
                     </div>)
                 }
