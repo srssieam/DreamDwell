@@ -26,9 +26,8 @@ const PropertyBought = () => {
                                 <img src={property.property_image} className="w-full max-h-[200px] object-cover" alt="" />
                             </div>
                             <div>
-                                <p><strong>Item:</strong> {property.property_title}</p>
-                                <p><strong>Quantity:</strong> {property.property_location}</p>
-                                <p><strong>Price:</strong> {property.price}</p>
+                                <p><strong>Property:</strong> {property.property_title}</p>
+                                <p><strong>Location:</strong> {property.property_location}</p>
                             </div>
                             <div>
                                 <p><strong>Agent:</strong> {property.agent_name}</p>
