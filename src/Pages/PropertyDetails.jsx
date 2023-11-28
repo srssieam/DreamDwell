@@ -14,6 +14,7 @@ const PropertyDetails = () => {
     const { _id, property_title, property_image, category, property_location, agent_name, agent_email, agent_image, price_range, description, bathroom, bedroom, balcony, area } = loadedProperty.data
 
     const wishlistProperty = {
+        _id,
         buyerEmail: user?.email,
         property_title,
         property_image,
@@ -27,7 +28,7 @@ const PropertyDetails = () => {
 
     const handleAddToWishlist = () =>{
 
-        if (wishlist.find(wishlistProperty => wishlistProperty.property_title === property_title)){
+        if (wishlist.find(wishlistProperty => wishlistProperty._id=== _id)){
             Swal.fire({
                 title: "failed!",
                 text: `you have already added this property`,
