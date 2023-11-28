@@ -21,6 +21,7 @@ import UpdateProperty from "../AgentDashboard/UpdateProperty";
 import UserProfile from "../UserDashboard/UserProfile";
 import MyWishlist from "../UserDashboard/MyWishlist";
 import OfferPage from "../UserDashboard/OfferPage";
+import PropertyBought from "../UserDashboard/PropertyBought";
 
 
 const Router = createBrowserRouter([
@@ -106,6 +107,10 @@ const Router = createBrowserRouter([
                 path:'/dashboard/offerPage/:id',
                 element:<OfferPage></OfferPage>,
                 loader: ({params})=> axios.get(`http://localhost:5000/v1/api/wishlist/${params.id}`)
+            },
+            {
+                path:'/dashboard/propertyBought',
+                element:<PropertyBought></PropertyBought>
             }
         ]
     }

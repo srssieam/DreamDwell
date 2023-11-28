@@ -2,11 +2,15 @@ import { useLoaderData } from "react-router-dom";
 import { useForm } from "react-hook-form"
 import useAuth from "../hooks/useAuth";
 import { useState } from "react";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const OfferPage = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const loadedProperty = useLoaderData().data;
-    console.log('property to be offered', loadedProperty.price_range.upper_price)
+    console.log('property to be offered', loadedProperty)
+
+    const axiosSecure = useAxiosSecure();
 
     const { register, handleSubmit, reset } = useForm();
     const { user } = useAuth();
@@ -19,7 +23,33 @@ const OfferPage = () => {
 
         if(offered < loadedProperty.price_range.lower_price || offered > loadedProperty.price_range.upper_price){
             setErrorMessage('Please input an amount within the range specified by the agent.')
+            return;
         }
+
+        const offeredProperty = {
+            _id: loadedProperty._id,
+            offered_amount: offered,
+            property_title: loadedProperty.property_title,
+            property_location: loadedProperty.property_location,
+            agent_name: loadedProperty.agent_name,
+            buyer_name: user?.displayName,
+            buyer_email: user?.email,
+            status: 'pending',
+            property_image: loadedProperty.property_image
+        }
+
+        const res = await axiosSecure.post('/allOfferedProperties', offeredProperty);
+            console.log(res.data)
+            if(res.data.insertedId){
+                // show success popup
+                reset();
+                Swal.fire({
+                    title: "Property has been Offered!",
+                    text: `${data.propertyTitle} Offered Successfully`,
+                    icon: "success",
+                    timer: 1500
+                  });
+            }
     }
 
     return (
