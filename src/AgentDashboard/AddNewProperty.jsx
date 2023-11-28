@@ -1,10 +1,24 @@
 import { useForm } from "react-hook-form"
+import useAxiosPublic from "../hooks/useAxiosPublic";
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const AddNewProperty = () => {
     const { register, handleSubmit, reset } = useForm();
-
+    const axiosPublic = useAxiosPublic();
     const onSubmit = async data => {
         console.log(data)
+
+        const imageFile = { image: data.propertyImg[0] }
+        const res = await axiosPublic.post(image_hosting_api, imageFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        });
+
+        const UploadedPhotoUrl = res.data.data.display_url
+        console.log(UploadedPhotoUrl)
     }
     return (
         <div className="lg:px-4">
