@@ -23,6 +23,7 @@ import MyWishlist from "../UserDashboard/MyWishlist";
 import OfferPage from "../UserDashboard/OfferPage";
 import PropertyBought from "../UserDashboard/PropertyBought";
 import RequestedProperties from "../AgentDashboard/RequestedProperties";
+import MyReviews from "../UserDashboard/MyReviews";
 
 
 const Router = createBrowserRouter([
@@ -116,6 +117,10 @@ const Router = createBrowserRouter([
             {
                 path:'/dashboard/propertyBought',
                 element:<PropertyBought></PropertyBought>
+            },
+            {
+                path:'/dashboard/myReviews',
+                element:<MyReviews></MyReviews>
             }
         ]
     }
