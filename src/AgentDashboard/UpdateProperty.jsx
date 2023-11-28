@@ -10,7 +10,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const UpdateProperty = () => {
     const loadedProperty = useLoaderData().data;
-    console.log(loadedProperty)
+    // console.log(loadedProperty)
 
     const { register, handleSubmit, reset } = useForm();
     const { user } = useAuth();

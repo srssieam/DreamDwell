@@ -9,7 +9,7 @@ import { RiAdvertisementLine } from "react-icons/ri";
 
 const Dashboard = () => {
     const isAdmin = false;
-    const isAgent = true;
+    const isAgent = false;
     return (
         <div className='max-w-screen-xl mx-auto'>
             <div style={{ backgroundImage: `url(${dashboardBg})`, backgroundAttachment: 'fixed' }} className="text-white bg-no-repeat bg-cover py-5 md:py-10 lg::py-20 hidden md:block">
