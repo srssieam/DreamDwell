@@ -19,6 +19,7 @@ import MyAddedProperty from "../AgentDashboard/MyAddedProperty";
 import AddNewProperty from "../AgentDashboard/AddNewProperty";
 import UpdateProperty from "../AgentDashboard/UpdateProperty";
 import UserProfile from "../UserDashboard/UserProfile";
+import MyWishlist from "../UserDashboard/MyWishlist";
 
 
 const Router = createBrowserRouter([
@@ -95,6 +96,10 @@ const Router = createBrowserRouter([
             {
                 path:'/dashboard/userProfile',
                 element:<UserProfile></UserProfile>
+            },
+            {
+                path:'/dashboard/wishlist',
+                element:<MyWishlist></MyWishlist>
             }
         ]
     }
