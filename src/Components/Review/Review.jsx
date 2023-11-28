@@ -16,6 +16,7 @@ import { Autoplay, Grid, Pagination } from 'swiper/modules';
 // import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 import useReviews from '../../hooks/useReviews';
+import ReviewCard from '../../Shared/ReviewCard';
 
 const Review = () => {
     const [reviews] = useReviews()
@@ -74,14 +75,7 @@ const Review = () => {
                         reviews.map((review, idx) => {
                             return (
                                 <SwiperSlide key={idx} className=''>
-                                    <div className='flex flex-col justify-center items-center lg:flex-row gap-4'>
-                                        <img src={review.image} className='w-20 h-20 object-cover rounded-full' alt="" />
-                                        <div className='text-center lg:text-left'>
-                                            <h3 className='text-2xl font-semibold'>{review.reviewer_name}</h3>
-                                            <p className='text-[#368a2b]'>{review.property_title}</p>
-                                            <p className='text-lg text-justify'>{review.review_description}</p>
-                                        </div>
-                                    </div>
+                                    <ReviewCard review={review}></ReviewCard>
                                 </SwiperSlide>
                             )
                         })
