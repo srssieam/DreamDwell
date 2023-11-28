@@ -58,7 +58,7 @@ const MyAddedProperty = () => {
                 {
                     properties.map(property => <div key={property._id} className="grid md:grid-cols-2 gap-3 border border-green-700">
                         <img src={property.property_image} className='h-[180px] md:h-[250px] w-full object-cover' alt="" />
-                        <div className='space-y-2 px-2 md:px-0'>
+                        <div className='space-y-2 px-2 md:px-0 h-full flex flex-col justify-between py-2'>
                             <h5 className="font-sans font-medium">
                                 {property.property_title}
                             </h5>
