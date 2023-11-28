@@ -17,6 +17,7 @@ import AdvertiseProperty from "../AdminDashboard/AdvertiseProperty";
 import AgentProfile from "../AgentDashboard/AgentProfile";
 import MyAddedProperty from "../AgentDashboard/MyAddedProperty";
 import AddNewProperty from "../AgentDashboard/AddNewProperty";
+import UpdateProperty from "../AgentDashboard/UpdateProperty";
 
 
 const Router = createBrowserRouter([
@@ -84,6 +85,11 @@ const Router = createBrowserRouter([
             {
                 path:'/dashboard/addNewProperty',
                 element:<AddNewProperty></AddNewProperty>
+            },
+            {
+                path:'/dashboard/updateProperty/:id',
+                element:<UpdateProperty></UpdateProperty>,
+                loader: ({params})=> axios.get(`http://localhost:5000/v1/api/agentAddedProperties/${params.id}`)
             }
         ]
     }

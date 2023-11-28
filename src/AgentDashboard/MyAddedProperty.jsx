@@ -75,7 +75,9 @@ const MyAddedProperty = () => {
                             </p>
                             <div className="flex gap-3">
                                 <button onClick={() => handleDeleteProperty(property)} className="p-2 rounded-md hover:bg-red-500 text-xl text-white bg-red-700"><RiDeleteBin6Line></RiDeleteBin6Line></button>
-                                <button className="p-2 rounded-md hover:bg-blue-500 text-xl text-white bg-blue-700"><GrEdit></GrEdit></button>
+                                <Link to={`/dashboard/updateProperty/${property._id}`}>
+                                    <button className="p-2 rounded-md hover:bg-blue-500 text-xl text-white bg-blue-700"><GrEdit></GrEdit></button>
+                                </Link>
                             </div>
                         </div>
                     </div>)
