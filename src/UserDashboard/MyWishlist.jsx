@@ -1,15 +1,40 @@
 import { MdLocationPin } from "react-icons/md";
 import useWishlist from "../hooks/useWishlist";
 import { Link } from "react-router-dom";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { GrEdit } from "react-icons/gr";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 
 const MyWishlist = () => {
     const [wishlist, refetch] = useWishlist();
+    const axiosSecure = useAxiosSecure();
 
     const handleRemove = (property) =>{
         console.log('property removed from wishlist', property)
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/wishlist/${property._id}`)
+                    .then(res => {
+                        // console.log(res.data);
+                        refetch()
+                        if (res.data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Property has been removed from wishlist.",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
     }
     return (
         <div className="lg:px-5">

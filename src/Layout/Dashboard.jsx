@@ -6,8 +6,11 @@ import { MdDashboardCustomize, MdOutlineArrowBack, MdOutlineFavorite } from "rea
 import { CgProfile } from "react-icons/cg";
 import { BsFillHouseAddFill } from "react-icons/bs";
 import { RiAdvertisementLine } from "react-icons/ri";
+import useWishlist from '../hooks/useWishlist';
 
 const Dashboard = () => {
+    const [wishlist] = useWishlist();
+    const wishlistCount = wishlist.length
     const isAdmin = false;
     const isAgent = false;
     return (
@@ -48,7 +51,7 @@ const Dashboard = () => {
                                 :     
                                 <>
                                     <li><NavLink to="/dashboard/userProfile"><CgProfile className="text-2xl"></CgProfile> My Profile</NavLink></li>
-                                    <li><NavLink to="/dashboard/wishlist"><MdOutlineFavorite className="text-2xl"></MdOutlineFavorite> Wishlist</NavLink></li>
+                                    <li><NavLink to="/dashboard/wishlist"><MdOutlineFavorite className="text-2xl"></MdOutlineFavorite> Wishlist <span className='text-black text-small p-1 rounded-full bg-yellow-500  font-semibold'>{wishlistCount}</span></NavLink></li>
                                     <li><NavLink to="/dashboard/propertyBought"><FaHouseCircleCheck className="text-2xl"></FaHouseCircleCheck> Property Bought</NavLink></li>
                                     <li><NavLink to="/dashboard/myReviews"><TbStarsFilled className="text-2xl"></TbStarsFilled> My Reviews</NavLink></li>
                                 </>
