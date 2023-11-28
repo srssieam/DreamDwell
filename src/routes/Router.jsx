@@ -14,6 +14,7 @@ import AllProperty from "../Pages/AllProperty";
 import PropertyDetails from "../Pages/PropertyDetails";
 import axios from "axios";
 import AdvertiseProperty from "../AdminDashboard/AdvertiseProperty";
+import AgentProfile from "../AgentDashboard/AgentProfile";
 
 
 const Router = createBrowserRouter([
@@ -69,6 +70,10 @@ const Router = createBrowserRouter([
             {
                 path:'/dashboard/advertise',
                 element:<AdvertiseProperty></AdvertiseProperty>
+            },
+            {
+                path:'/dashboard/agentProfile',
+                element:<AgentProfile></AgentProfile>
             }
         ]
     }

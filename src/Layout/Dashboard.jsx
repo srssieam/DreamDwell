@@ -8,8 +8,8 @@ import { BsFillHouseAddFill } from "react-icons/bs";
 import { RiAdvertisementLine } from "react-icons/ri";
 
 const Dashboard = () => {
-    const isAdmin = true;
-    const isAgent = false;
+    const isAdmin = false;
+    const isAgent = true;
     return (
         <div className='max-w-screen-xl mx-auto'>
             <div style={{ backgroundImage: `url(${dashboardBg})`, backgroundAttachment: 'fixed' }} className="text-white bg-no-repeat bg-cover py-5 md:py-10 lg::py-20 hidden md:block">
