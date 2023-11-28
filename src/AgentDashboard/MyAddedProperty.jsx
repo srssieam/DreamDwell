@@ -5,6 +5,7 @@ import { MdLocationPin } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { GrEdit } from "react-icons/gr";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 
 const MyAddedProperty = () => {
@@ -28,28 +29,31 @@ const MyAddedProperty = () => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
-          }).then((result) => {
-            if (result.isConfirmed) {    
+        }).then((result) => {
+            if (result.isConfirmed) {
                 axiosSecure.delete(`/agentAddedProperties/${property._id}`)
-                    .then(res =>{
+                    .then(res => {
                         // console.log(res.data);
                         refetch()
-                        if(res.data.deletedCount > 0){
+                        if (res.data.deletedCount > 0) {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Property has been deleted.",
                                 icon: "success"
                             });
                         }
-                })
+                    })
             }
-          }); 
+        });
     }
 
     return (
         <div className="lg:px-5">
             <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic lg:my-5">My added properties</h1>
-            <p className="text-lg mb-4">Total added properties: {properties.length}</p>
+            <div className="mb-4 md:flex justify-between">
+                <p className="text-lg ">Total added properties: {properties.length}</p>
+                <Link to='/dashboard/addNewProperty'><button className="text-black bg-yellow-500 hover:bg-green-500 px-2 py-1 rounded">+ Add new</button></Link>
+            </div>
             <div className=" grid md:grid-cols-2 gap-6">
                 {
                     properties.map(property => <div key={property._id} className="grid md:grid-cols-2 gap-3 border border-green-700">
@@ -70,7 +74,7 @@ const MyAddedProperty = () => {
                                 status: {property?.verification_status ? property.verification_status : "pending"}
                             </p>
                             <div className="flex gap-3">
-                                <button onClick={()=> handleDeleteProperty(property)} className="p-2 rounded-md hover:bg-red-500 text-xl text-white bg-red-700"><RiDeleteBin6Line></RiDeleteBin6Line></button>
+                                <button onClick={() => handleDeleteProperty(property)} className="p-2 rounded-md hover:bg-red-500 text-xl text-white bg-red-700"><RiDeleteBin6Line></RiDeleteBin6Line></button>
                                 <button className="p-2 rounded-md hover:bg-blue-500 text-xl text-white bg-blue-700"><GrEdit></GrEdit></button>
                             </div>
                         </div>

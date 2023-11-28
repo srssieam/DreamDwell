@@ -16,6 +16,7 @@ import axios from "axios";
 import AdvertiseProperty from "../AdminDashboard/AdvertiseProperty";
 import AgentProfile from "../AgentDashboard/AgentProfile";
 import MyAddedProperty from "../AgentDashboard/MyAddedProperty";
+import AddNewProperty from "../AgentDashboard/AddNewProperty";
 
 
 const Router = createBrowserRouter([
@@ -44,7 +45,7 @@ const Router = createBrowserRouter([
             {
                 path:'register',
                 element:<Register></Register>
-            },
+            }
         ]
     },
     {
@@ -78,7 +79,11 @@ const Router = createBrowserRouter([
             },
             {
                 path:'/dashboard/myAddedProperties',
-                element:<MyAddedProperty></MyAddedProperty>
+                element:<MyAddedProperty></MyAddedProperty>,
+            },
+            {
+                path:'/dashboard/addNewProperty',
+                element:<AddNewProperty></AddNewProperty>
             }
         ]
     }
