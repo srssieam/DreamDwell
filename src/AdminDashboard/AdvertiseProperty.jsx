@@ -67,7 +67,7 @@ const AdvertiseProperty = () => {
 
 
     return (
-        <div className="px-5">
+        <div className="lg:px-5">
             <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic lg:my-5">Manage Properties</h1>
             <p className="text-red-600 font-semibold text-xl mb-4">You can advertise at most 6 properties</p>
             <p className="text-lg mb-4">Total verified Properties: {properties.length}</p>
