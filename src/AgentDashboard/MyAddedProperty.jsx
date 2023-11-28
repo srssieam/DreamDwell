@@ -4,18 +4,48 @@ import useAuth from "../hooks/useAuth";
 import { MdLocationPin } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { GrEdit } from "react-icons/gr";
+import Swal from "sweetalert2";
 
 
 const MyAddedProperty = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
-    const { data: properties = [] } = useQuery({
+    const { data: properties = [], refetch } = useQuery({
         queryKey: ['agentAddedProperties', user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/agentAddedProperties?email=${user?.email}`);
             return res.data;
         }
     })
+
+    const handleDeleteProperty = property => {
+        console.log('property to delete', property);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {    
+                axiosSecure.delete(`/agentAddedProperties/${property._id}`)
+                    .then(res =>{
+                        // console.log(res.data);
+                        refetch()
+                        if(res.data.deletedCount > 0){
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Property has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                })
+            }
+          }); 
+    }
+
     return (
         <div className="lg:px-5">
             <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic lg:my-5">My added properties</h1>
@@ -40,7 +70,7 @@ const MyAddedProperty = () => {
                                 status: {property?.verification_status ? property.verification_status : "pending"}
                             </p>
                             <div className="flex gap-3">
-                                <button className="p-2 rounded-md hover:bg-red-500 text-xl text-white bg-red-700"><RiDeleteBin6Line></RiDeleteBin6Line></button>
+                                <button onClick={()=> handleDeleteProperty(property)} className="p-2 rounded-md hover:bg-red-500 text-xl text-white bg-red-700"><RiDeleteBin6Line></RiDeleteBin6Line></button>
                                 <button className="p-2 rounded-md hover:bg-blue-500 text-xl text-white bg-blue-700"><GrEdit></GrEdit></button>
                             </div>
                         </div>
