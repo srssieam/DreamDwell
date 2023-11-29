@@ -16,18 +16,30 @@ const CheckOut = () => {
         if(card === null){
             return;
         }
+
+        const { error, paymentMethod } = await stripe.createPaymentMethod({
+            type: 'card',
+            card
+        })
+
+        if(error){
+            console.log('payment error', error)
+        }
+        else{
+            console.log('payment method', paymentMethod)
+        }
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <CardElement
+            <CardElement className="p-5 border border-yellow-700"
                 options={{
                     style: {
                         base: {
                             fontSize: '16px',
-                            color: '#424770',
+                            color: 'red',
                             '::placeholder': {
-                                color: '#aab7c4',
+                                color: 'green',
                             },
                         },
                         invalid: {
@@ -36,7 +48,7 @@ const CheckOut = () => {
                     },
                 }}
             />
-            <button type="submit" disabled={!stripe}>
+            <button  className="btn bg-yellow-400 hover:bg-yellow-500 text-black w-full my-5" type="submit" disabled={!stripe}>
                 Pay
             </button>
         </form>
