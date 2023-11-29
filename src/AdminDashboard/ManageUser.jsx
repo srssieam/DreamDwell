@@ -132,6 +132,7 @@ const ManageUser = () => {
                                 timer: 1500
                             }); 
                         }
+                        axiosSecure.delete(`/fraudProperty/${user.email}`)
                      })
             }
           });

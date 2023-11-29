@@ -11,7 +11,7 @@ import useWishlist from '../hooks/useWishlist';
 const Dashboard = () => {
     const [wishlist] = useWishlist();
     const wishlistCount = wishlist.length
-    const isAdmin = false;
+    const isAdmin = true;
     const isAgent = false;
     return (
         <div className='max-w-screen-xl mx-auto'>

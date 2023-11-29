@@ -60,6 +60,7 @@ const Router = createBrowserRouter([
         element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         errorElement:<ErrorPage></ErrorPage>,
         children:[
+            // admin only
             {
                 path:'/dashboard/adminProfile',
                 element:<AdminProfile></AdminProfile>
@@ -80,6 +81,8 @@ const Router = createBrowserRouter([
                 path:'/dashboard/advertise',
                 element:<AdvertiseProperty></AdvertiseProperty>
             },
+
+            // agent only
             {
                 path:'/dashboard/agentProfile',
                 element:<AgentProfile></AgentProfile>
@@ -101,6 +104,8 @@ const Router = createBrowserRouter([
                 path:'/dashboard/myRequestedProperties',
                 element:<RequestedProperties></RequestedProperties>
             },
+
+            // user only
             {
                 path:'/dashboard/userProfile',
                 element:<UserProfile></UserProfile>
