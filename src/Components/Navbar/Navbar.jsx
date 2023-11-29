@@ -7,11 +7,15 @@ import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { IoMdLogOut } from "react-icons/io";
 import Swal from "sweetalert2";
+import useAdmin from "../../hooks/useAdmin";
+import useAgent from "../../hooks/useAgent";
 
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false)
     const { user, logOut } = useAuth();
+    const [isAdmin] = useAdmin();
+    const [isAgent] = useAgent();
 
     const handleLogout = () =>{
         logOut()
@@ -37,7 +41,16 @@ const Navbar = () => {
     const navLinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/allProperty'>All Property</NavLink></li>
-        <li onClick={handleDashboard}><NavLink to='/dashboard'>Dashboard</NavLink></li>
+        
+        {
+            user && isAdmin && <li onClick={handleDashboard}><NavLink to='/dashboard/adminProfile'>Dashboard</NavLink></li>
+        }
+        {
+            user && isAgent && <li onClick={handleDashboard}><NavLink to='/dashboard/agentProfile'>Dashboard</NavLink></li>
+        }
+        {
+            user && !isAgent && !isAdmin && <li onClick={handleDashboard}><NavLink to='/dashboard/userProfile'>Dashboard</NavLink></li>
+        }
         <li onClick={handleLogout} className='text-[#54dd42] ml-4 md:hidden'>Logout |-</li>
     </>
     return (
