@@ -33,8 +33,11 @@ const PropertyBought = () => {
                                 <p><strong>Agent:</strong> {property.agent_name}</p>
                                 <p><strong>Offered amount:</strong> {property.offered_amount}</p>
                             </div>
-                            <div className="flex justify-center md:justify-end">
-                                <p className="p-2 bg-yellow-500 md:mx-7 font-playpen text-black font-semibold">{property.status}</p>
+                            <div className="flex md:flex-col justify-center gap-3">
+                                <p className="p-1 bg-yellow-500 md:mx-7 text-center font-playpen text-black font-semibold">{property.status}</p>
+                                {
+                                    property.status === "accepted" && <button className="p-2 rounded bg-green-500 hover:bg-green-600 md:mx-7 font-playpen text-black font-semibold">Pay</button>
+                                }
                             </div>
                         </div>
                     })
