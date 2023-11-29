@@ -25,6 +25,7 @@ import PropertyBought from "../UserDashboard/PropertyBought";
 import RequestedProperties from "../AgentDashboard/RequestedProperties";
 import MyReviews from "../UserDashboard/MyReviews";
 import PaymentPage from "../UserDashboard/PaymentPage";
+import AdminRout from "./AdminRoute";
 
 
 const Router = createBrowserRouter([
@@ -64,23 +65,23 @@ const Router = createBrowserRouter([
             // admin only
             {
                 path:'/dashboard/adminProfile',
-                element:<AdminProfile></AdminProfile>
+                element:<AdminRout><AdminProfile></AdminProfile></AdminRout>
             },
             {
                 path:'/dashboard/manageUsers',
-                element:<ManageUser></ManageUser>
+                element:<AdminRout><ManageUser></ManageUser></AdminRout>
             },
             {
                 path:'/dashboard/manageProperties',
-                element:<ManageProperties></ManageProperties>
+                element:<AdminRout><ManageProperties></ManageProperties></AdminRout>
             },
             {
                 path:'/dashboard/manageReviews',
-                element:<ManageReviews></ManageReviews>
+                element:<AdminRout><ManageReviews></ManageReviews></AdminRout>
             },
             {
                 path:'/dashboard/advertise',
-                element:<AdvertiseProperty></AdvertiseProperty>
+                element:<AdminRout><AdvertiseProperty></AdvertiseProperty></AdminRout>
             },
 
             // agent only
