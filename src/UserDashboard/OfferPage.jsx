@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form"
 import useAuth from "../hooks/useAuth";
 import { useState } from "react";
@@ -9,6 +9,7 @@ const OfferPage = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const loadedProperty = useLoaderData().data;
     console.log('property to be offered', loadedProperty)
+    const navigate = useNavigate()
 
     const axiosSecure = useAxiosSecure();
 
@@ -49,6 +50,7 @@ const OfferPage = () => {
                     icon: "success",
                     timer: 1500
                   });
+                navigate('/dashboard/propertyBought')
             }
     }
 

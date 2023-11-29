@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const CheckOut = ({paymentAmount, propertyInfo}) => {
     const {user} = useAuth();
@@ -12,6 +13,7 @@ const CheckOut = ({paymentAmount, propertyInfo}) => {
     const stripe = useStripe();
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
 
     console.log(propertyInfo,'propertyInfo')
 
@@ -79,6 +81,7 @@ const CheckOut = ({paymentAmount, propertyInfo}) => {
                                 icon: "success",
                                 timer: 1500
                             }); 
+                            navigate('/dashboard/propertyBought')
                         
                      })
             }

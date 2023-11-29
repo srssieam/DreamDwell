@@ -12,7 +12,7 @@ const Dashboard = () => {
     const [wishlist] = useWishlist();
     const wishlistCount = wishlist.length
     const isAdmin = false;
-    const isAgent = false;
+    const isAgent = true;
     return (
         <div className='max-w-screen-xl mx-auto'>
             <div style={{ backgroundImage: `url(${dashboardBg})`, backgroundAttachment: 'fixed' }} className="text-white bg-no-repeat bg-cover py-5 md:py-10 lg::py-20 hidden md:block">

@@ -3,6 +3,7 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -12,6 +13,8 @@ const AddNewProperty = () => {
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
+
     const onSubmit = async data => {
         console.log(data)
 
@@ -56,6 +59,7 @@ const AddNewProperty = () => {
                     icon: "success",
                     timer: 1500
                   });
+                navigate('/dashboard/myAddedProperties')
             }
         }
     }
