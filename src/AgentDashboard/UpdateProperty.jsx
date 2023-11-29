@@ -85,7 +85,7 @@ const UpdateProperty = () => {
                             <div>
                                 <label htmlFor="category" className="font-semibold text-xl">Category*</label><br />
                                 <select  {...register("category", { required: true })} defaultValue={loadedProperty.category} className="px-4 py-3 w-full mt-4 border ">
-                                    <option disabled selected>category</option>
+                                    <option disabled>category</option>
                                     <option value="House">House</option>
                                     <option value="Apartment">Apartment</option>
                                     <option value="Building">Building</option>

@@ -77,7 +77,7 @@ const RequestedProperties = () => {
 
     return (
         <div className="lg:px-5">
-            <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic lg:my-5">Property bought</h1>
+            <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic lg:my-5">Requested Properties</h1>
             <div className="mb-4">
                 <p className="text-lg ">Total properties bought: {properties.length}</p>
             </div>

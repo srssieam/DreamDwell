@@ -99,7 +99,7 @@ const Router = createBrowserRouter([
             {
                 path:'/dashboard/updateProperty/:id',
                 element:<UpdateProperty></UpdateProperty>,
-                loader: ({params})=> axios.get(`http://localhost:5000/v1/api/agentAddedProperties/${params.id}`)
+                loader: ({params})=> axios.get(`http://localhost:5000/v1/api/agentAddedProperties/${params.id}`, {withCredentials:true})
             },
             {
                 path:'/dashboard/myRequestedProperties',
@@ -118,7 +118,7 @@ const Router = createBrowserRouter([
             {
                 path:'/dashboard/offerPage/:id',
                 element:<OfferPage></OfferPage>,
-                loader: ({params})=> axios.get(`http://localhost:5000/v1/api/wishlist/${params.id}`)
+                loader: ({params})=> axios.get(`http://localhost:5000/v1/api/wishlist/${params.id}`, {withCredentials:true})
             },
             {
                 path:'/dashboard/propertyBought',
@@ -131,7 +131,7 @@ const Router = createBrowserRouter([
             {
                 path:'/dashboard/paymentPage/:id',
                 element:<PaymentPage></PaymentPage>,
-                loader: ({params})=> axios.get(`http://localhost:5000/v1/api/usersOfferedProperties/${params.id}`)
+                loader: ({params})=> axios.get(`http://localhost:5000/v1/api/usersOfferedProperties/${params.id}`, {withCredentials:true})
             }
         ]
     }

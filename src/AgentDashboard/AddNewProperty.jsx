@@ -9,7 +9,7 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const AddNewProperty = () => {
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
@@ -80,7 +80,7 @@ const AddNewProperty = () => {
                             </div>
                             <div>
                                 <label htmlFor="category" className="font-semibold text-xl">Category*</label><br />
-                                <select  {...register("category", { required: true })} className="px-4 py-3 w-full mt-4 border ">
+                                <select  {...register("category", { required: true })} required className="px-4 py-3 w-full mt-4 border font-semibold bg-green-500 text-black">
                                     <option disabled selected>category</option>
                                     <option value="House">House</option>
                                     <option value="Apartment">Apartment</option>
