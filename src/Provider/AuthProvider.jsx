@@ -40,15 +40,24 @@ const AuthProvider = ({ children }) => {
             console.log('current user', currentUser);
             setLoading(false);
             const loggedUser = {email: currentUser.email}
+            if(currentUser){
                 axiosPublic.post('/jwt', loggedUser, {withCredentials: true}) // sent loggedUser to the server
                 .then(res => {
                     console.log('token response', res.data) // get token for loggedUser
                 })
+            }
+            else{
+                axiosPublic('/logout', loggedUser, {withCredentials:true})
+                .then(res=>{
+                    console.log('logged out', res.data); // get response fro server after clearing cookie
+                })
+            }
+                
         })
         return () =>{
             return unsubscribe();
         }
-    },[])
+    },[axiosPublic])
 
     // logout method
     const logOut = () => {
