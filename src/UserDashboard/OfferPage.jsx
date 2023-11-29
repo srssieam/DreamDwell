@@ -54,7 +54,7 @@ const OfferPage = () => {
 
     return (
         <div className="lg:px-4">
-            <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic lg:my-5">Update property</h1>
+            <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic lg:my-5">Offer property</h1>
             <div className="my-5 ">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="space-y-4">

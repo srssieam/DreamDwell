@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 
 const PropertyBought = () => {
@@ -36,7 +37,7 @@ const PropertyBought = () => {
                             <div className="flex md:flex-col justify-center gap-3">
                                 <p className="p-1 bg-yellow-500 md:mx-7 text-center font-playpen text-black font-semibold">{property.status}</p>
                                 {
-                                    property.status === "accepted" && <button className="p-2 rounded bg-green-500 hover:bg-green-600 md:mx-7 font-playpen text-black font-semibold">Pay</button>
+                                    property.status === "accepted" && <Link to={`/dashboard/paymentPage/${property._id}`} className="p-2 rounded bg-green-500 hover:bg-green-600 md:mx-7 text-center font-playpen text-black font-semibold"><button>Pay</button></Link>
                                 }
                             </div>
                         </div>

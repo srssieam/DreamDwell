@@ -24,6 +24,7 @@ import OfferPage from "../UserDashboard/OfferPage";
 import PropertyBought from "../UserDashboard/PropertyBought";
 import RequestedProperties from "../AgentDashboard/RequestedProperties";
 import MyReviews from "../UserDashboard/MyReviews";
+import PaymentPage from "../UserDashboard/PaymentPage";
 
 
 const Router = createBrowserRouter([
@@ -126,6 +127,11 @@ const Router = createBrowserRouter([
             {
                 path:'/dashboard/myReviews',
                 element:<MyReviews></MyReviews>
+            },
+            {
+                path:'/dashboard/paymentPage/:id',
+                element:<PaymentPage></PaymentPage>,
+                loader: ({params})=> axios.get(`http://localhost:5000/v1/api/usersOfferedProperties/${params.id}`)
             }
         ]
     }
