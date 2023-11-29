@@ -2,8 +2,9 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
 
-const CheckOut = ({paymentAmount}) => {
+const CheckOut = ({paymentAmount, propertyInfo}) => {
     const {user} = useAuth();
     const [error, setError] = useState('');
     const [clientSecret, setClientSecret] = useState('');
@@ -11,6 +12,8 @@ const CheckOut = ({paymentAmount}) => {
     const stripe = useStripe();
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
+
+    console.log(propertyInfo,'propertyInfo')
 
     useEffect( () => {
         axiosSecure.post('/create-payment-intent', {price: paymentAmount}) // send total price to the server
@@ -65,6 +68,19 @@ const CheckOut = ({paymentAmount}) => {
             if(paymentIntent.status === 'succeeded'){
                 console.log('transaction id', paymentIntent.id)
                 setTransactionId(paymentIntent.id)
+
+                // save status 
+                axiosSecure.patch(`/allOfferedProperties/paid/${propertyInfo[0]._id}`)
+                    .then(res => {
+                        console.log(res.data);
+                            Swal.fire({
+                                title: "payment successful!",
+                                text: `Best wishes for you`,
+                                icon: "success",
+                                timer: 1500
+                            }); 
+                        
+                     })
             }
         }
     }

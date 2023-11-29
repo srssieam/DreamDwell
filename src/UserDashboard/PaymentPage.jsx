@@ -14,7 +14,7 @@ const PaymentPage = () => {
             <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic lg:my-5">Payment !</h1>
             <div className="md:px-24 mt-16">
                 <Elements stripe={stripePromise}>
-                    <CheckOut paymentAmount={parseFloat(paymentAmount)}></CheckOut>
+                    <CheckOut propertyInfo={loadedProperty} paymentAmount={parseFloat(paymentAmount)}></CheckOut>
                 </Elements>
             </div>
         </div>
