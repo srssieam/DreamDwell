@@ -8,12 +8,14 @@ import { BsFillHouseAddFill } from "react-icons/bs";
 import { RiAdvertisementLine } from "react-icons/ri";
 import useWishlist from '../hooks/useWishlist';
 import useAdmin from '../hooks/useAdmin';
+import useAgent from '../hooks/useAgent';
 
 const Dashboard = () => {
     const [wishlist] = useWishlist();
     const wishlistCount = wishlist.length
     const [isAdmin] = useAdmin();
-    const isAgent = false;
+    const [isAgent] = useAgent();
+
     return (
         <div className='max-w-screen-xl mx-auto'>
             <div style={{ backgroundImage: `url(${dashboardBg})`, backgroundAttachment: 'fixed' }} className="text-white bg-no-repeat bg-cover py-5 md:py-10 lg::py-20 hidden md:block">

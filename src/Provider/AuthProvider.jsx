@@ -3,6 +3,7 @@ import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStat
 import app from "../../firebase.config";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 
+
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 
@@ -38,21 +39,23 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             console.log('current user', currentUser);
-            setLoading(false);
+            
             const loggedUser = {email: currentUser?.email}
             if(currentUser){
                 axiosPublic.post('/jwt', loggedUser, {withCredentials: true}) // sent loggedUser to the server
                 .then(res => {
                     console.log('token response', res.data) // get token for loggedUser
+                    setLoading(false);
                 })
+                
             }
             else{
                 axiosPublic('/logout', loggedUser, {withCredentials:true})
                 .then(res=>{
                     console.log('logged out', res.data); // get response fro server after clearing cookie
+                    setLoading(false);
                 })
             }
-                
         })
         return () =>{
             return unsubscribe();
