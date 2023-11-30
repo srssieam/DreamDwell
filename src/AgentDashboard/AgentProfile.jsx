@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import useAuth from "../hooks/useAuth";
 
 
@@ -5,6 +6,9 @@ const AgentProfile = () => {
     const { user } = useAuth();
     return (
         <div className="px-3">
+            <Helmet>
+                <title>DreamDwell | Agent profile</title>
+            </Helmet>
             <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic my-3 lg:my-5">Agent Profile</h1>
             <div className="grid md:grid-cols-2 gap-8 border border-green-700 rounded-md p-4 md:p-8">
                 <div className="space-y-3 flex flex-col justify-center items-center">

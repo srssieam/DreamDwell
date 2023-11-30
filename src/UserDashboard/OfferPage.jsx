@@ -4,6 +4,7 @@ import useAuth from "../hooks/useAuth";
 import { useState } from "react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const OfferPage = () => {
     const [errorMessage, setErrorMessage] = useState('');
@@ -56,6 +57,9 @@ const OfferPage = () => {
 
     return (
         <div className="lg:px-4">
+            <Helmet>
+                <title>DreamDwell | Offer property</title>
+            </Helmet>
             <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic lg:my-5">Offer property</h1>
             <div className="my-5 ">
                 <form onSubmit={handleSubmit(onSubmit)}>

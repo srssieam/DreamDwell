@@ -6,6 +6,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { useState } from 'react';
 import { ImSearch } from 'react-icons/im';
+import { Helmet } from 'react-helmet-async';
 
 const AllProperty = () => {
 
@@ -36,6 +37,9 @@ const AllProperty = () => {
 
     return (
         <div className='max-w-screen-xl mx-auto pt-20 px-5 lg:px-0'>
+            <Helmet>
+                <title>DreamDwell | All properties</title>
+            </Helmet>
             <div style={{ backgroundImage: `url(${propertyBg})`, backgroundAttachment: 'fixed' }} className="text-white bg-no-repeat bg-cover py-5 md:py-10 lg::py-20 hidden md:block">
                 <div className='bg-[#00000080] bg-blend-darken max-w-screen-xl mx-auto md:p-10'>
                     <h1 className="text-5xl lg:text-7xl text-center text-[#ffee00]">All Property</h1>

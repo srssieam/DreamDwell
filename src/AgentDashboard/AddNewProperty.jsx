@@ -4,6 +4,7 @@ import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -65,6 +66,9 @@ const AddNewProperty = () => {
     }
     return (
         <div className="lg:px-4">
+            <Helmet>
+                <title>DreamDwell | Add property</title>
+            </Helmet>
             <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic lg:my-5">Add New Property</h1>
             <div className="my-5 ">
                 <form onSubmit={handleSubmit(onSubmit)}>

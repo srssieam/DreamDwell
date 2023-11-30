@@ -3,6 +3,7 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import useAuth from "../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 
 const MyReviews = () => {
@@ -47,6 +48,9 @@ const MyReviews = () => {
     }
     return (
         <div className="px-5">
+            <Helmet>
+                <title>DreamDwell | My reviews</title>
+            </Helmet>
             <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic lg:my-5">Manage All Reviews</h1>
             <p className="text-lg mb-4">Total Reviews: {reviews.length}</p>
             <div className="border-2 border-green-700 p-4 grid md:grid-cols-2 gap-6">

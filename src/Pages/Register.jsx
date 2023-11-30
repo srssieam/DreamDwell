@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form"
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
@@ -87,6 +88,9 @@ const Register = () => {
 
     return (
         <div className="w-full min-h-[100vh] flex justify-center items-center px-6 md:px-0">
+            <Helmet>
+                <title>DreamDwell | Register</title>
+            </Helmet>
             <div className="border-2 mt-[80px] border-[#ffee00] rounded-2xl p-7 w-full md:w-3/5 lg:w-2/5">
                 <form onSubmit={handleSubmit(onSubmit)} className="">
                     <h1 className="text-4xl font-bold text-center">Register</h1>

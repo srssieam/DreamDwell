@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 
 const PropertyBought = () => {
@@ -16,6 +17,9 @@ const PropertyBought = () => {
     })
     return (
         <div className="lg:px-5">
+            <Helmet>
+                <title>DreamDwell | Property Bought</title>
+            </Helmet>
             <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic lg:my-5">Property bought</h1>
             <div className="mb-4">
                 <p className="text-lg ">Total properties bought: {properties.length}</p>

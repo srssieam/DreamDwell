@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 
 const RequestedProperties = () => {
@@ -77,6 +78,9 @@ const RequestedProperties = () => {
 
     return (
         <div className="lg:px-5">
+            <Helmet>
+                <title>DreamDwell | Sold properties</title>
+            </Helmet>
             <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic lg:my-5">Requested Properties</h1>
             <div className="mb-4">
                 <p className="text-lg ">Total Request: {properties.length}</p>

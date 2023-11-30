@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import useReviews from "../hooks/useReviews";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 
 const ManageReviews = () => {
@@ -37,6 +38,9 @@ const ManageReviews = () => {
 
     return (
         <div className="px-5">
+            <Helmet>
+                <title>DreamDwell | Manage Reviews</title>
+            </Helmet>
             <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic lg:my-5">Manage All Reviews</h1>
             <p className="text-lg mb-4">Total Reviews: {reviews.length}</p>
             <div className="border-2 border-green-700 p-4 grid md:grid-cols-2 gap-6">

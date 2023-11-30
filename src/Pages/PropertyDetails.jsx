@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import useWishlist from "../hooks/useWishlist";
 import { useQuery } from "@tanstack/react-query";
 import ReviewCard from "../Shared/ReviewCard";
+import { Helmet } from "react-helmet-async";
 
 
 const PropertyDetails = () => {
@@ -30,14 +31,14 @@ const PropertyDetails = () => {
 
     const handleAddToWishlist = () => {
 
-        // if (wishlist.find(wishlistProperty => wishlistProperty.propertyId === _id)) {
-        //     Swal.fire({
-        //         title: "failed!",
-        //         text: `you have already added this property`,
-        //         icon: "warning",
-        //     });
-        //     return;
-        // }
+        if (wishlist.find(wishlistProperty => wishlistProperty.property_title === property_title)) {
+            Swal.fire({
+                title: "failed!",
+                text: `you have already added this property`,
+                icon: "warning",
+            });
+            return;
+        }
 
         axiosPublic.post(`/wishlist`, wishlistProperty)
             .then(res => {
@@ -95,6 +96,9 @@ const PropertyDetails = () => {
 
     return (
         <div className="max-w-screen-xl px-5 lg:px-0 mx-auto pt-20">
+            <Helmet>
+                <title>DreamDwell | Property details</title>
+            </Helmet>
             <h1 className="text-3xl text-center my-10 lg:text-5xl font-semibold">
                 {property_title}
             </h1>

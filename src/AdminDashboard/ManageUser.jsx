@@ -5,6 +5,7 @@ import { AiOutlineStop } from "react-icons/ai";
 import { MdAdminPanelSettings } from "react-icons/md";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth"
+import { Helmet } from "react-helmet-async";
 
 const ManageUser = () => {
     const axiosSecure = useAxiosSecure();
@@ -140,6 +141,9 @@ const ManageUser = () => {
     
     return (
         <div className="px-5">
+            <Helmet>
+                <title>DreamDwell | Manage Users</title>
+            </Helmet>
             <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic lg:my-5">All Users</h1>
             <p className="text-lg mb-4">Total User: {users.length}</p>
 

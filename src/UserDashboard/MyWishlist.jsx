@@ -3,6 +3,7 @@ import useWishlist from "../hooks/useWishlist";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 
 const MyWishlist = () => {
@@ -38,6 +39,9 @@ const MyWishlist = () => {
     }
     return (
         <div className="lg:px-5">
+            <Helmet>
+                <title>DreamDwell | My wishlist</title>
+            </Helmet>
             <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic lg:my-5">My Wishlist</h1>
             <div className="mb-4">
                 <p className="text-lg ">Total properties: {wishlist.length}</p>

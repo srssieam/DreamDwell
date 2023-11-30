@@ -6,6 +6,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { GrEdit } from "react-icons/gr";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 
 const MyAddedProperty = () => {
@@ -49,6 +50,9 @@ const MyAddedProperty = () => {
 
     return (
         <div className="lg:px-5">
+            <Helmet>
+                <title>DreamDwell | My added properties</title>
+            </Helmet>
             <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic lg:my-5">My added properties</h1>
             <div className="mb-4 md:flex justify-between">
                 <p className="text-lg ">Total added properties: {properties.length}</p>

@@ -9,6 +9,7 @@ import { RiAdvertisementLine } from "react-icons/ri";
 import useWishlist from '../hooks/useWishlist';
 import useAdmin from '../hooks/useAdmin';
 import useAgent from '../hooks/useAgent';
+import { Helmet } from 'react-helmet-async';
 
 const Dashboard = () => {
     const [wishlist] = useWishlist();
@@ -18,6 +19,9 @@ const Dashboard = () => {
 
     return (
         <div className='max-w-screen-xl mx-auto'>
+            <Helmet>
+                <title>DreamDwell | Dashboard</title>
+            </Helmet>
             <div style={{ backgroundImage: `url(${dashboardBg})`, backgroundAttachment: 'fixed' }} className="text-white bg-no-repeat bg-cover py-5 md:py-10 lg::py-20 hidden md:block">
                 <div className='bg-[#00000080] bg-blend-darken max-w-screen-xl mx-auto md:p-10'>
                     <h1 className="text-5xl lg:text-7xl text-center text-[#ffee00]">Dashboard</h1>

@@ -4,6 +4,7 @@ import { MdLocationPin, MdOutlineVerified } from "react-icons/md";
 import { RiForbid2Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const ManageProperties = () => {
     const [properties, refetch] = useProperty();
@@ -97,6 +98,9 @@ const ManageProperties = () => {
 
     return (
         <div className="px-5">
+            <Helmet>
+                <title>DreamDwell | Manage Properties</title>
+            </Helmet>
             <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic lg:my-5">Manage Properties</h1>
             <p className="text-lg mb-4">Total Properties: {properties.length}</p>
 
