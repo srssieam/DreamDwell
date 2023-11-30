@@ -52,7 +52,9 @@ const Navbar = () => {
         {
             user && !isAgent && !isAdmin && <li onClick={handleDashboard}><NavLink to='/dashboard/userProfile'>Dashboard</NavLink></li>
         }
-        <li onClick={handleLogout} className='text-[#54dd42] ml-4 md:hidden'>Logout |-</li>
+        {
+            user && <li onClick={handleLogout} className='text-[#54dd42] ml-4 md:hidden'>Logout |-</li>
+        }
     </>
     return (
         <div className='fixed z-20 bg-black w-full'>
