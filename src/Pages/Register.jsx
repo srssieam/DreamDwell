@@ -5,6 +5,8 @@ import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
 
 const Register = () => {
     const { createUser, updateUserProfile, googleLogin } = useAuth()
@@ -19,6 +21,16 @@ const Register = () => {
         console.log(data)
 
         const userInfo = { name: data.name, email: data.email }
+
+        const imageFile = { image: data.propertyImg[0] }
+        const res = axiosPublic.post(image_hosting_api, imageFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        });
+
+        const UploadedPhotoUrl = res.data.data.display_url
+        console.log(UploadedPhotoUrl)
 
         createUser(data.email, data.password)
             .then(res => {
@@ -89,7 +101,8 @@ const Register = () => {
                         <label className="label">
                             <span className="label-text text-xl font-semibold text-black">Photo</span>
                         </label>
-                        <input {...register("photoURL", { required: true })} type="text" placeholder="photo" className="input input-bordered" />
+                        <input {...register('photoURL', { required: true })} type="file" className="border file-input max-w-xs mx-4 my-3 w-full mt-4 text-black bg-green-500" />
+                        {/* <input {...register("photoURL", { required: true })} type="text" placeholder="photo" className="input input-bordered" /> */}
                         {errors.photoURL && <span className="text-red-700">Photo is required !</span>}
                     </div>
                     <div className="form-control">

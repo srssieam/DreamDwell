@@ -8,9 +8,9 @@ const RequestedProperties = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure();
     const { data: properties = [], refetch } = useQuery({
-        queryKey: ['review'],
+        queryKey: ['agentsOffered'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/usersOfferedProperties?email=${user?.email}`)
+            const res = await axiosSecure.get(`/allOfferedProperties?agentName=${user?.displayName}`)
             return res.data
         }
     })
@@ -79,7 +79,7 @@ const RequestedProperties = () => {
         <div className="lg:px-5">
             <h1 className="text-2xl lg:text-5xl text-center text-green-700 font-semibold italic lg:my-5">Requested Properties</h1>
             <div className="mb-4">
-                <p className="text-lg ">Total properties bought: {properties.length}</p>
+                <p className="text-lg ">Total Request: {properties.length}</p>
             </div>
             {
                 properties?.map(property => {
@@ -99,6 +99,8 @@ const RequestedProperties = () => {
                         {
                             property.status === "accepted" ?
                             <div className="flex justify-center"><p className="text-green-700 font-semibold"> Accepted</p></div>
+                            : property.status === "Paid" ?
+                            <div className="flex justify-center"><p className="text-green-700 font-semibold"> Sold</p></div>
                             : property.status === "rejected" ?
                             <div className="flex justify-center"><p className="text-red-700 font-semibold"> Rejected</p></div>
                             :

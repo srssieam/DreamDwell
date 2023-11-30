@@ -26,6 +26,8 @@ import RequestedProperties from "../AgentDashboard/RequestedProperties";
 import MyReviews from "../UserDashboard/MyReviews";
 import PaymentPage from "../UserDashboard/PaymentPage";
 import AdminRout from "./AdminRoute";
+import AgentRoute from "./AgentRoute";
+import MySoldProperty from "../AgentDashboard/MySoldProperty";
 
 
 const Router = createBrowserRouter([
@@ -87,24 +89,28 @@ const Router = createBrowserRouter([
             // agent only
             {
                 path:'/dashboard/agentProfile',
-                element:<AgentProfile></AgentProfile>
+                element:<AgentRoute><AgentProfile></AgentProfile></AgentRoute>
             },
             {
                 path:'/dashboard/myAddedProperties',
-                element:<MyAddedProperty></MyAddedProperty>,
+                element:<AgentRoute><MyAddedProperty></MyAddedProperty></AgentRoute>,
             },
             {
                 path:'/dashboard/addNewProperty',
-                element:<AddNewProperty></AddNewProperty>
+                element:<AgentRoute><AddNewProperty></AddNewProperty></AgentRoute>
             },
             {
                 path:'/dashboard/updateProperty/:id',
-                element:<UpdateProperty></UpdateProperty>,
+                element:<AgentRoute><UpdateProperty></UpdateProperty></AgentRoute>,
                 loader: ({params})=> axios.get(`http://localhost:5000/v1/api/agentAddedProperties/${params.id}`, {withCredentials:true})
             },
             {
                 path:'/dashboard/myRequestedProperties',
-                element:<RequestedProperties></RequestedProperties>
+                element:<AgentRoute><RequestedProperties></RequestedProperties></AgentRoute>
+            },
+            {
+                path:'/dashboard/mySoldProperties',
+                element:<AgentRoute><MySoldProperty></MySoldProperty></AgentRoute>
             },
 
             // user only

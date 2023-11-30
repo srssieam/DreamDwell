@@ -80,7 +80,8 @@ const CheckOut = ({paymentAmount, propertyInfo}) => {
                                 text: `Best wishes for you`,
                                 icon: "success",
                                 timer: 1500
-                            }); 
+                            });
+                            axiosSecure.post(`/soldProperties/`, propertyInfo[0]) 
                             navigate('/dashboard/propertyBought')
                         
                      })
