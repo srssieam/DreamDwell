@@ -28,6 +28,7 @@ import PaymentPage from "../UserDashboard/PaymentPage";
 import AdminRout from "./AdminRoute";
 import AgentRoute from "./AgentRoute";
 import MySoldProperty from "../AgentDashboard/MySoldProperty";
+import AboutUs from "../Components/AboutUs/AboutUs";
 
 
 const Router = createBrowserRouter([
@@ -47,7 +48,7 @@ const Router = createBrowserRouter([
             {
                 path:'propertyDetails/:id',
                 element:<PrivateRoute><PropertyDetails></PropertyDetails></PrivateRoute>,
-                loader: ({params})=> axios.get(`http://localhost:5000/v1/api/allVerifiedProperties/${params.id}`)
+                loader: ({params})=> axios.get(`https://dream-dwell-server.vercel.app/v1/api/allVerifiedProperties/${params.id}`)
             },
             {
                 path:'login',
@@ -56,6 +57,10 @@ const Router = createBrowserRouter([
             {
                 path:'register',
                 element:<Register></Register>
+            },
+            {
+                path:'aboutUs',
+                element:<AboutUs></AboutUs>
             }
         ]
     },
@@ -102,7 +107,7 @@ const Router = createBrowserRouter([
             {
                 path:'/dashboard/updateProperty/:id',
                 element:<AgentRoute><UpdateProperty></UpdateProperty></AgentRoute>,
-                loader: ({params})=> axios.get(`http://localhost:5000/v1/api/agentAddedProperties/${params.id}`, {withCredentials:true})
+                loader: ({params})=> axios.get(`https://dream-dwell-server.vercel.app/v1/api/agentAddedProperties/${params.id}`, {withCredentials:true})
             },
             {
                 path:'/dashboard/myRequestedProperties',
@@ -125,7 +130,7 @@ const Router = createBrowserRouter([
             {
                 path:'/dashboard/offerPage/:id',
                 element:<OfferPage></OfferPage>,
-                loader: ({params})=> axios.get(`http://localhost:5000/v1/api/wishlist/${params.id}`, {withCredentials:true})
+                loader: ({params})=> axios.get(`https://dream-dwell-server.vercel.app/v1/api/wishlist/${params.id}`, {withCredentials:true})
             },
             {
                 path:'/dashboard/propertyBought',
@@ -138,7 +143,7 @@ const Router = createBrowserRouter([
             {
                 path:'/dashboard/paymentPage/:id',
                 element:<PaymentPage></PaymentPage>,
-                loader: ({params})=> axios.get(`http://localhost:5000/v1/api/usersOfferedProperties/${params.id}`, {withCredentials:true})
+                loader: ({params})=> axios.get(`https://dream-dwell-server.vercel.app/v1/api/usersOfferedProperties/${params.id}`, {withCredentials:true})
             }
         ]
     }

@@ -18,13 +18,13 @@ const Register = () => {
     const location = useLocation();
     let toGo = location.state?.from?.pathname || "/"
 
-    const onSubmit = data => {
+    const onSubmit = async data => {
         console.log(data)
 
         const userInfo = { name: data.name, email: data.email }
 
-        const imageFile = { image: data.propertyImg[0] }
-        const res = axiosPublic.post(image_hosting_api, imageFile, {
+        const imageFile = { image: data.photoURL[0] }
+        const res = await axiosPublic.post(image_hosting_api, imageFile, {
             headers: {
                 'content-type': 'multipart/form-data'
             }
@@ -37,7 +37,7 @@ const Register = () => {
             .then(res => {
                 const loggedUser = res.user;
                 console.log(loggedUser);
-                updateUserProfile(data.name, data.photoURL);
+                updateUserProfile(data.name, UploadedPhotoUrl);
 
                 axiosPublic.post('/users', userInfo)
                     .then(res => {

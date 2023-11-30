@@ -39,13 +39,13 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             console.log('current user', currentUser);
-            
+            setLoading(false);
             const loggedUser = {email: currentUser?.email}
             if(currentUser){
                 axiosPublic.post('/jwt', loggedUser, {withCredentials: true}) // sent loggedUser to the server
                 .then(res => {
                     console.log('token response', res.data) // get token for loggedUser
-                    setLoading(false);
+                    
                 })
                 
             }
@@ -53,7 +53,6 @@ const AuthProvider = ({ children }) => {
                 axiosPublic('/logout', loggedUser, {withCredentials:true})
                 .then(res=>{
                     console.log('logged out', res.data); // get response fro server after clearing cookie
-                    setLoading(false);
                 })
             }
         })

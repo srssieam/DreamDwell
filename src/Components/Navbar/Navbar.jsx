@@ -41,6 +41,7 @@ const Navbar = () => {
     const navLinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/allProperty'>All Property</NavLink></li>
+        <li><NavLink to='/aboutUs'>About us</NavLink></li>
         
         {
             user && isAdmin && <li onClick={handleDashboard}><NavLink to='/dashboard/adminProfile'>Dashboard</NavLink></li>

@@ -4,8 +4,39 @@ import building from '../../assets/building.png'
 import condominium from '../../assets/condominium.png'
 import home from '../../assets/home.png'
 import office from '../../assets/office.png'
+import { Link, useNavigate } from 'react-router-dom'
+import useAgent from '../../hooks/useAgent'
+import Swal from 'sweetalert2'
+import useAuth from '../../hooks/useAuth'
 
 const Banner = () => {
+    const navigate = useNavigate();
+    const [isAgent] = useAgent();
+    const {user} = useAuth();
+    const handleSell = () => {
+        if(!user){
+            Swal.fire({
+                title: "Access denied!",
+                text: `Please log in to your agent account`,
+                icon: "warning"
+            });
+            return;
+        }
+
+        if(!isAgent){
+            Swal.fire({
+                title: "Access denied!",
+                text: `Only agent can sell property`,
+                icon: "error"
+            });
+            return;
+        }
+        if(isAgent){
+            navigate('/dashboard/addNewProperty')
+            return;
+        }
+        
+    }
     return (
         <div className='relative h-[100vh]'>
             <video className='w-full h-full absolute top-0 object-cover  -z-10' autoPlay loop muted>
@@ -50,9 +81,10 @@ const Banner = () => {
 
                     <div className='mt-4'>
                         <div className="join">
-                            <button className="btn btn-outline text-yellow-500 hover:bg-black hover:text-yellow-500 text-xl join-item">Buy</button>
-                            <button className="btn btn-outline text-yellow-500 hover:bg-black hover:text-yellow-500 text-xl join-item">Rent</button>
-                            <button className="btn btn-outline text-yellow-500 hover:bg-black hover:text-yellow-500 text-xl join-item">Sell</button>
+                            <Link to="/allProperty"><button className="btn btn-outline text-yellow-500 hover:bg-black hover:text-yellow-500 text-xl join-item">Buy</button></Link>
+                            <Link to="/allProperty"><button className="btn btn-outline text-yellow-500 hover:bg-black hover:text-yellow-500 text-xl join-item">Rent</button></Link>
+                            <Link><button onClick={handleSell} className="btn btn-outline text-yellow-500 hover:bg-black hover:text-yellow-500 text-xl join-item">Sell</button></Link>
+                            
                         </div>
                     </div>
                 </div>
