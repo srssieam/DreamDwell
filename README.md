@@ -24,3 +24,13 @@
 ## 6. Responsiveness:
   + Mobile Responsiveness: Ensuring the site functions seamlessly across various devices (desktops, tablets, smartphones).
   + Intuitive Interface: User-friendly design for easy navigation and usage.
+
+# used Technologies:-
+  ## Front end:
+    + React Router Dom, tailwindCSS , DaisyUI, Tanstack query, axios, swiper JS, React tabs, sweet alerts, firebase authentication
+  ## Back end:
+    + node JS, express JS, MongoDB, JWT authentication
+  ## Payment Method:
+    + stripe JS
+# Project selling Line:
+  + Experience seamless real estate transactions with our cutting-edge platform! From property listing to secure transactions, our site offers a streamlined process for agents, users, and admins. Find your dream property,     make offers, and enjoy a safe, verified marketplace. Join us for hassle-free real estate dealings!
